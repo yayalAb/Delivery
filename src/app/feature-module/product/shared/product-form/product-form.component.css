@@ -1,0 +1,17 @@
+.loginform{
+    border: solid 1px gray;
+    margin: 10px 10%;
+}
+.Inputs{
+    margin: 10px 5%;
+}
+
+input{
+    margin-bottom: 20px;
+}
+.buttons{
+    text-align: right;
+    margin:0 10px;
+    margin-right: 5%;
+
+}

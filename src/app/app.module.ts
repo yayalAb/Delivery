@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModuleModule } from './core-module/core-module.module';
+import { FeatureModuleModule } from './feature-module/feature-module.module';
+
 
 export const ROUTES:Routes=[
   
@@ -18,6 +20,7 @@ export const ROUTES:Routes=[
     BrowserModule,
     AppRoutingModule,
     CoreModuleModule,
+    FeatureModuleModule,
     RouterModule.forChild(ROUTES)
   ],
   providers: [],

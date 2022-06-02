@@ -11,7 +11,9 @@ h1{
     color: blue;
     text-align: center;
     padding: 10px,10px, 10px, 10px;
-    margin-left: 5px;
+    margin-left: 2%;
+    margin-top: 10px;
+    margin-top: 10px;
 }
 button{
     color: blue;
@@ -19,7 +21,9 @@ button{
     padding: 0 0 0 0;
     margin-left: 45%;  
     border: none;
+    margin-top: 20px;
 }
 a{
     padding-left: 45%;
+    text-decoration: none;
 }

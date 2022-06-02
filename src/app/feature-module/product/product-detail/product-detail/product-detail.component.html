@@ -1,0 +1,12 @@
+<div>
+    <app-product-form (submitted)="addProduct($event)">
+      <h1 class="title">Add Product</h1>
+      <button type="submit" class="btn-success">
+        Save
+      </button>
+      <a routerLink="/feature/product/product/list">back to product list</a>
+      <!-- <div class="error" *ngIf="error">
+        {{ error }}
+      </div> -->
+    </app-product-form>
+  </div>

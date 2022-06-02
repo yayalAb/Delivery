@@ -1,0 +1,37 @@
+<div class="pos">
+    <div class="loginform">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <ng-content select="h1" class="title"></ng-content>
+          <div class="Inputs">
+            <label>Name </label>
+            <div>
+              <input class="form-control" type="text" placeholder="Product Name" formControlName="name">
+            </div>
+
+            <label>quality </label>
+            <div>
+              <input class="form-control" type="text" placeholder="Product quality" formControlName="quality">
+            </div>
+
+            <label>Expired Date </label>
+            <div>
+              <input class="form-control" type="date" placeholder="Expired Date" formControlName="exDate">
+            </div>
+
+            <label>Content </label>
+            <div>
+              <input class="form-control" type="number" placeholder="Content" formControlName="content">
+            </div>
+          </div>
+            <div class="buttons">
+            <div>
+              <ng-content select="button"></ng-content>
+            </div>
+      
+            <div class="link">
+              <ng-content select="a"></ng-content>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>

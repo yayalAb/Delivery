@@ -1,0 +1,45 @@
+<div class="pos">
+    <div class="loginform">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+        <ng-content select="h1" class="title"></ng-content>
+          <div class="Inputs">
+            <label>Email </label>
+            <div>
+              <input class="form-control"type="email" placeholder="Email address" formControlName="email">
+            </div>
+            <div *ngIf="isSignUp">
+              <label>User Type </label>
+              <div>
+                <input class="form-control" type="text" placeholder="User type" formControlName="UserType">
+              </div>
+            </div>
+  
+            <label>Password</label>
+            <div>
+              <input class="form-control" type="password" placeholder="Enter password" formControlName="password">
+            </div>
+          </div>
+          
+            <div class="error" *ngIf="emailFormat">
+              Invalid email format, please enter Valid email
+            </div>
+      
+            <div class="error" *ngIf="passwordInvalid">
+              Password is required and min length 6
+            </div>
+            <ng-content select=".error"></ng-content>
+            <div class="buttons">
+            <div>
+              <ng-content select="button"></ng-content>
+            </div>
+      
+            <div>
+              <ng-content select="a"></ng-content>
+            </div>
+  
+          </div>
+  
+      </form>
+    </div>
+  </div>

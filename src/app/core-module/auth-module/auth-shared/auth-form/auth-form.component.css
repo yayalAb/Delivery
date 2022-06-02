@@ -1,0 +1,45 @@
+.pos{
+    width: 100%;
+
+}
+.loginform{
+    background: #fff;
+    box-shadow: 0 3px 4px rgba(0,0,0,.1);
+    border-radius: 3px;
+    padding: 10px; 
+    max-width: 500px;
+    /* text-align: center; */
+    margin: 10px auto;
+    border: 1px solid rgb(14, 17, 233);
+}
+label{
+    text-align: left;
+} 
+
+input,button{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.Inputs{
+    display: block;
+    width: max-content;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 20px;
+}
+
+
+  .containers{
+    display: flex;
+
+  }
+  .error{
+      color: red;
+  }
+
+
+  .buttons{
+       text-align: center;
+       padding-bottom: 10px;
+  }

@@ -1,0 +1,27 @@
+<div class="product">
+    <div *ngIf="productList.length">
+      <h3>Product List</h3>
+        <table class="table table-bordered">
+          <tr>
+            <th >Product Name</th>
+            <th >Quality</th>
+            <th >Expired Date</th>
+            <th >Quantity</th>
+          </tr>
+           <tr *ngFor="let product of productList"> 
+            <td>{{product.name}}</td>
+            <td>{{product.quality}}</td>
+            <td>{{product.exDate}}</td>
+            <td>{{product.content}}</td>
+            <td><img src="/assets/img/remove.svg" onclick=" removeProduct()"></td>
+            <td><img src="/assets/img/pencil.png"></td>
+          </tr>
+        </table>
+    </div>
+    <div *ngIf="!productList.length">
+        <h3>You Have No Product Please Add New Product</h3>
+    </div>
+     <button class="btn-success" routerLink="/product/detail"><img src="assets/img/add.svg" routerLink="/product/detail">Add Product</button>
+  </div>
+  
+  

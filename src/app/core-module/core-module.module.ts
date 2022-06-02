@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderModuleModule } from './header-module/header-module.module';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthModuleModule } from './auth-module/auth-module.module';
+import { ServiceService } from './Service/service.service';
 
 
 export const ROUTES:Routes=[
   {path:'core',
   children :[
     { path:'', loadChildren:()=>import('./auth-module/auth-module.module').then(x=>x.AuthModuleModule)}
+
   ]
    }
 ]
@@ -26,5 +27,13 @@ export const ROUTES:Routes=[
   ]
 })
 export class CoreModuleModule {
+  static forRoot(): ModuleWithProviders<CoreModuleModule> {
+    return {
+      ngModule: CoreModuleModule,
+      providers: [
+        ServiceService
+      ]
+    };
+  }
 
  }
