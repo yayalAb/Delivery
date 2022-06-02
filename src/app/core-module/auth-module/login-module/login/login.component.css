@@ -1,0 +1,17 @@
+a{
+    color: rgb(18, 21, 214);
+    direction: none;
+    text-decoration: none;
+    margin: 10px 10px;
+    font-size:  16px;
+}
+.title{
+    text-align: center;
+    margin: 20px 0;
+    color: blue;
+}
+.error{
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
