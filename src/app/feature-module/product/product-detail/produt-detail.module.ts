@@ -7,7 +7,8 @@ import { CoreModuleModule } from 'src/app/core-module/core-module.module';
 import { HttpClientModule } from '@angular/common/http';
 
 export const ROUTES:Routes=[
-  {path:'', component:ProductDetailComponent}
+  {path:'', component:ProductDetailComponent},
+  {path:':id', component:ProductDetailComponent}
 ]
 
 

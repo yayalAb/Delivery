@@ -1,0 +1,29 @@
+.deliveryForm{
+    border: solid 1px rgb(47, 69, 168);
+    margin: 10px 10%;
+}
+.Inputs{
+    margin: 10px 5%;
+}
+
+input{
+    margin-bottom: 20px;
+}
+.buttons{
+    text-align: right;
+    margin:0 10px;
+    margin-right: 5%;
+
+}
+.title{
+    margin-left: 30%;
+    font-size: 32px;
+    color: rgb(41, 41, 240);
+}
+a{
+    text-decoration: none;
+    margin: 10px; 
+}
+.quantity .product{
+    margin-right: 3%;
+}

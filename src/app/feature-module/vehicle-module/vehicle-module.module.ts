@@ -22,6 +22,7 @@ export const ROUTES:Routes=[
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES)
+
   ]
 })
 export class VehicleModuleModule { }

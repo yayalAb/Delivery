@@ -1,0 +1,25 @@
+.product{
+    text-align: center;
+    margin: 10px 5%;
+    border: solid 1px royalblue;
+}
+h3{
+    font-size: 22px;
+    color: indigo;
+}
+button{
+    margin-left: 65%;
+    margin-right: 10%;
+    text-align: right;
+    margin-bottom: 3%;
+}
+
+table{
+    margin: 3%;
+    width: 80%;
+}
+
+td img{
+    width: 35px;
+    height: 35px;
+}

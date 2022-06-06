@@ -2,7 +2,9 @@
     <div class="header">
         <img src="assets/img/icons8-delivery.gif">
         <h1>Dilvey System</h1>
-        <a class="btn-default" routerLink="/core/auth/login">Login</a>
+        <!-- <button ejs-button cssClass="e-info" content="Button"></button> -->
+        <a *ngIf="!id" class="btn-default" routerLink="/core/auth/login">Login</a>
+        <a *ngIf="id" class="btn-default" (click)="logout()" >logout</a>
     </div>
     
 </div>

@@ -1,0 +1,16 @@
+ <div class="list_view">
+    <div class="list">
+        
+        <ng-content select="h1" class="title"></ng-content>
+            <table class="table table-bordered">
+            <ng-content select="thead" class="thead"></ng-content>
+             <ng-content select="tbody" class="tbody"></ng-content>
+            </table>
+            <div class="button">
+                <ng-content select="button" class="btn-success" ></ng-content> 
+                <div class="backlink">
+                    <ng-content select="a" ></ng-content> 
+                </div>
+            </div>
+    </div>
+  </div>

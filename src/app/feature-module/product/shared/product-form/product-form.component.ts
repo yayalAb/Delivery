@@ -6,9 +6,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class ProductFormComponent  {
-  @Input() isSignUp=false
- 
+export class ProductFormComponent {
+  @Input() 
+  isSignUp=false
+
+@Input()
+  product:any
 
 
   @Output()

@@ -1,1 +1,27 @@
-<p>driver-list works!</p>
+<div class="product">
+    <div *ngIf="DriverList.length">
+      <h3>Driver List</h3>
+        <table class="table table-bordered">
+          <tr>
+            <th >Driver Name</th>
+            <th >Email</th>
+            <th >Phone</th>
+            <th >Age</th>
+          </tr>
+           <tr *ngFor="let driver of DriverList"> 
+            <td>{{driver.name}}</td>
+            <td>{{driver.email}}</td>
+            <td>{{driver.phone}}</td>
+            <td>{{driver.age}}</td>
+            <td><img src="/assets/img/remove.svg" (click)="deleteProduct(driver.id)"></td>
+            <td><img src="/assets/img/pencil.png" (click)="editProduct(driver.id)"></td>
+          </tr>
+        </table>
+    </div>
+    <div *ngIf="!DriverList.length">
+        <h3>You Have No Driver Please Add New driver</h3>
+    </div>
+     <button class="btn-success" routerLink="/feature/driver/driver/detail"><img src="assets/img/add.svg" routerLink="/product/detail">Add driver</button>
+  </div>
+  
+  

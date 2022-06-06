@@ -19,10 +19,16 @@ export class ServiceService {
   getService(url:string){
       return this.http.get(PASSENGER_API+url);
   }
-  putService(){
+  putService(url:string,event:any ){
+    return this.http.put(PASSENGER_API+url, event,{headers}).subscribe(); 
     
   }
-  deleteService(){
-    
+  deleteService(url:string){
+    return this.http.delete(PASSENGER_API+url, {headers});
   }
+
+  logout() :void {    
+    localStorage.setItem('isLoggedIn','false');    
+    localStorage.removeItem('token');    
+    } 
 }

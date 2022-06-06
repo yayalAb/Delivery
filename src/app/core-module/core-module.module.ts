@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HeaderModuleModule } from './header-module/header-module.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ServiceService } from './Service/service.service';
+import { AuthGuard } from './auth-module/guard/guard.guard';
 
 
 export const ROUTES:Routes=[
   {path:'core',
   children :[
     { path:'', loadChildren:()=>import('./auth-module/auth-module.module').then(x=>x.AuthModuleModule)}
-
   ]
    }
 ]
@@ -31,7 +31,9 @@ export class CoreModuleModule {
     return {
       ngModule: CoreModuleModule,
       providers: [
-        ServiceService
+        ServiceService,
+        AuthGuard
+
       ]
     };
   }

@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bab.component.css']
 })
 export class NavBabComponent implements OnInit {
-
+   id:any=""
   constructor() { }
 
   ngOnInit(): void {
+    this.id = localStorage.getItem('token');  
   }
 
 }

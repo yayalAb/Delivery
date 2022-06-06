@@ -1,0 +1,35 @@
+.DriverForm{
+    border: solid 1px gray;
+    margin: 10px 10%;
+}
+.Inputs{
+    margin: 10px 5%;
+}
+
+input{
+    margin-bottom: 20px;
+}
+.buttons{
+    text-align: right;
+    margin:0 10px;
+    margin-right: 5%;
+
+}
+.title{
+    margin-left: 30%;
+    font-size: 32px;
+    color: rgb(41, 41, 240);
+}
+a{
+    text-decoration: none;
+    margin: 10px;
+    
+}
+.lists{
+    border: solid 1px rgb(70, 67, 226);
+    margin: 2%;
+}
+
+.btn-success{
+    margin: 2%;
+}

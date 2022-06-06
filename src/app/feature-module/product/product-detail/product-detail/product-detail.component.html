@@ -1,6 +1,7 @@
 <div>
-    <app-product-form (submitted)="addProduct($event)">
-      <h1 class="title">Add Product</h1>
+    <app-product-form (submitted)="addProduct($event)"
+    [product]="data">
+       <h1 class="title">{{ product ? 'Edit' : 'Add' }}  Product</h1>
       <button type="submit" class="btn-success">
         Save
       </button>

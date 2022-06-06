@@ -1,0 +1,59 @@
+
+<div class="pos">
+    <div class="deliveryForm">
+      <form [formGroup]="form"  (ngSubmit)="onSubmit($event)" >
+        <h1 class="title">{{ deliver ? 'Edit' : 'Request' }}   Delivery</h1>
+            <div class="Inputs"> 
+              <div class='textboxes'>
+                <ejs-dropdownlist id='ddlelement' [dataSource]='driver' formControlName="driver"  placeholder='Select a driver' ></ejs-dropdownlist>
+               </div>  
+               <div class='textboxes'>
+                <ejs-textbox  placeholder="Start" floatLabelType="Always" formControlName="start" ></ejs-textbox>
+              </div>
+              <div class='textboxes'>
+                <ejs-textbox  placeholder="End" floatLabelType="Always"  formControlName="end" ></ejs-textbox>
+              </div>  
+              <div>
+              <div>
+                <div class="product" formArrayName="product">
+                  <label *ngFor="let c of product.controls; index as i;">
+                    <ejs-dropdownlist id='ddlelement' [dataSource]='data' [formControlName]="i" placeholder='Select a product' ></ejs-dropdownlist>
+                    <span
+                      class="meal-form__remove"
+                      (click)="removeproduct(i)">
+                    </span>
+                  </label>
+                </div>
+                <div class="quantity" formArrayName="quantity">
+                  <label *ngFor="let c of quantity.controls; index as i;">
+                    <!-- <ejs-numerictextbox value='10' formControlName="age" [ngModel]="data.age"></ejs-numerictextbox> -->
+                    <ejs-textbox  [formControlName]="i" type="number" placeholder="quantity" floatLabelType="Always"  formControlName="end" ></ejs-textbox>
+                    <span
+                      class="meal-form__remove"
+                      (click)="removeproduct(i)">
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <button 
+                type="button"
+                class="btn-success"
+                (click)="addproduct()">
+                <img src="/assets/img/add-white.svg">
+                Add More
+              </button>
+                
+              </div>   
+            <div class="buttons">    
+              <div>
+                <button class="btn-success"> {{ deliver ? 'Update ' : 'New ' }}  Request</button>
+              </div>
+              <a routerLink="/feature/delivery/delivery/list">back to delivery</a>
+            </div>  
+          </div>
+      </form>
+    </div>
+  </div>
+
+ <!-- <input type="number"  [formControlName]="i" placeholder="quantity" class="form-control"> -->
+

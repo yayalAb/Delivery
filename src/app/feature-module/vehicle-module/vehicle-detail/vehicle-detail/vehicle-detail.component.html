@@ -1,1 +1,29 @@
-<p>vehicle-detail works!</p>
+<div class="pos">
+    <div class="vehicleForm">
+      <form [formGroup]="form"  (ngSubmit)="onSubmit($event)" >
+        <h1 class="title">{{ vehicle ? 'Edit' : 'Add' }}  Vehicle Information</h1>
+        
+          <div class="Inputs">
+            <div class='textboxes'>
+                <ejs-textbox  placeholder="Vehicle Owner" floatLabelType="Always" formControlName="owner" [ngModel]="data.owner"></ejs-textbox>
+              </div>
+            <div class='textboxes'>
+                <ejs-textbox type="text" placeholder="Driver" name="driver" floatLabelType="Always" formControlName="driver" [ngModel]="data.driver"></ejs-textbox>
+              </div>
+              <div class='textboxes'>
+                <ejs-textbox type="text" placeholder="type" name="type" floatLabelType="Always" formControlName="type" [ngModel]="data.driver"></ejs-textbox>
+              </div>
+            <div class='textboxes'>
+              <ejs-maskedtextbox mask='000-000-0000' formControlName="model" [ngModel]="data.model" ></ejs-maskedtextbox>
+             </div> 
+
+          </div>
+            <div class="buttons">
+            <div>
+              <button class="btn-success"> {{ vehicle ? 'Update' : 'Save' }} </button>
+            </div>
+            <a routerLink="/feature/vehicle/vehicle/list">back to driver list</a>
+          </div>
+      </form>
+    </div>
+  </div>

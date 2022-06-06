@@ -1,1 +1,36 @@
-<p>driver works!</p>
+<div class="pos">
+    <div class="DriverForm">
+      <form [formGroup]="form">
+        <h1 class="title">{{ driver ? 'Edit' : 'Add' }}  Driver Information</h1>
+        
+          <div class="Inputs">
+            <div class='textboxes'>
+                <ejs-textbox  placeholder="Full Name" floatLabelType="Always" formControlName="name" [ngModel]="data.name"></ejs-textbox>
+              </div>
+            <div class='textboxes'>
+                <ejs-textbox type="email" placeholder="Email" name="email" floatLabelType="Always" formControlName="email" [ngModel]="data.email"></ejs-textbox>
+              </div>
+            <div class='textboxes'>
+              <ejs-maskedtextbox mask='000-000-0000' formControlName="phone" [ngModel]="data.phone" ></ejs-maskedtextbox>
+             </div> 
+            <div class='textboxes'>
+            <ejs-numerictextbox value='10' formControlName="age" [ngModel]="data.age"></ejs-numerictextbox>
+            </div>
+          </div>
+         <button *ngIf="!driver" class="btn-success"  (click)="addtolist($event)">Add To List</button>
+          <div  class="lists" *ngIf="drivers.length">
+          <div *ngFor="let dr of drivers">
+            <p>{{dr.name}}=> {{dr.email}} => {{dr.phone}}  => {{dr.age}}</p>
+          </div>
+          </div>
+
+
+            <div class="buttons">
+            <div>
+              <button class="btn-success" (click)=" onSubmit($event)"> {{ driver ? 'Update' : 'Save' }} </button>
+            </div>
+            <a routerLink="/feature/driver/driver/list">back to driver list</a>
+          </div>
+      </form>
+    </div>
+  </div>
