@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { NavBabComponent } from './nav-bar/nav-bab.component';
 import { RouterModule } from '@angular/router';
-import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { ButtonModule, RadioButtonModule  } from '@syncfusion/ej2-angular-buttons';
+import { SidebarModule,TreeViewModule  } from '@syncfusion/ej2-angular-navigations';
 
 
 
@@ -14,7 +15,11 @@ import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
   ],
   imports: [
     CommonModule, 
+    RadioButtonModule,
+    SidebarModule,
     ButtonModule,
+    RadioButtonModule,
+    TreeViewModule ,
     RouterModule
   ],
   exports:[

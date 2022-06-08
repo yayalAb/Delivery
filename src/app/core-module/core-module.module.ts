@@ -6,10 +6,12 @@ import { ServiceService } from './Service/service.service';
 import { AuthGuard } from './auth-module/guard/guard.guard';
 
 
+
 export const ROUTES:Routes=[
   {path:'core',
   children :[
     { path:'', loadChildren:()=>import('./auth-module/auth-module.module').then(x=>x.AuthModuleModule)}
+    ,{path:'dashboard', loadChildren:()=>import('./dashboard/dashboard.module').then(x=>x.DashboardModule)}
   ]
    }
 ]

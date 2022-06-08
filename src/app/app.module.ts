@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModuleModule } from './core-module/core-module.module';
 import { FeatureModuleModule } from './feature-module/feature-module.module';
+import { SidebarModule, TreeViewModule } from '@syncfusion/ej2-angular-navigations';
 export const ROUTES:Routes=[
   {path:'',
   children:[
@@ -24,7 +25,9 @@ export const ROUTES:Routes=[
     AppRoutingModule,
     CoreModuleModule,
     FeatureModuleModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    SidebarModule,
+    TreeViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
