@@ -5,6 +5,11 @@
 .e-font:before{
   content: '\e34c';
 }
+img{
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+}
 
 /* header-section styles */
 #header-section.main-header {
@@ -30,7 +35,6 @@
   border-left: 1px solid #d2d6de;
   width: 10em;
 }
-
 #header-section .float-left {
   float: left;
 }
@@ -70,10 +74,10 @@
 /*main-menu-header  styles */
 #sidebar-treeview .main-menu .main-menu-header {
   color: #656a70;
-padding: 15px;
-font-size: 14px;
-width: 13em;
-margin: 0;
+  padding: 15px;
+  font-size: 14px;
+  width: 13em;
+  margin: 0;
 }
 
 /*end of main-menu-header styles */

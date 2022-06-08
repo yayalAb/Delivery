@@ -17,7 +17,6 @@ export class DeliveryListComponent implements OnInit {
   ngOnInit(): void {
     this.deliveryService.getService('delivery').subscribe(response => {
       this.deliveryList = response;
-      console.log("Delivers",this.deliveryList)
   });
 }
 

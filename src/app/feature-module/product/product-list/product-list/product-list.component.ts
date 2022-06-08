@@ -57,4 +57,8 @@ export class ProductListComponent implements OnInit {
     const selectedrecords: object[] = this.grid.getSelectedRecords();  // Get the selected records.
 }
 
+EventHandler(event:any){
+  console.log("event  handler:")
+}
+
 }

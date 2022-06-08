@@ -3,7 +3,7 @@
     <div class="list">
       <h3>Product List</h3>
       <ejs-grid [dataSource]='productList' [allowPaging]="true" [allowSorting]="true"
-        [allowFiltering]="true" [pageSettings]="pageSettings">
+        [allowFiltering]="true" [pageSettings]="pageSettings" (nodeClicked)="EventHandler($event)" >
           <e-columns>
               <e-column field='name' headerText='Name' textAlign='left' width=20%></e-column>
               <e-column field='quality' headerText='Quality' textAlign='left' width=20%></e-column>

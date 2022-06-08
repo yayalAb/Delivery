@@ -26,7 +26,9 @@ export class DeliveryDetailComponent implements OnInit {
     this.driver= ['driver1', 'driver2', 'driver3', 'driver4', 'driver5'];
   }
    data=['product1', 'product2', 'product3', 'product4', 'product5']
-
+   @Output()
+   remove = new EventEmitter<FormGroup>();
+  
   @Output()
   submitted = new EventEmitter<FormGroup>();
   form = this.fb.group({
@@ -36,8 +38,10 @@ export class DeliveryDetailComponent implements OnInit {
     product:this.fb.array(['']),
     quantity:this.fb.array([''])
   });
+
+  
   onSubmit(event:any){
-    console.log(this.form.value)
+    this.submitted.emit(this.form);
     this.Serves.postService('delivery',this.form.value)
     this.router.navigate(['/feature/delivery/delivery/list'])
   }

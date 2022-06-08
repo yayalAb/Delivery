@@ -19,9 +19,24 @@
           </div>
          <button *ngIf="!driver" class="btn-success"  (click)="addtolist($event)">Add To List</button>
           <div  class="lists" *ngIf="drivers.length">
-          <div *ngFor="let dr of drivers">
-            <p>{{dr.name}}=> {{dr.email}} => {{dr.phone}}  => {{dr.age}}</p>
-          </div>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Age</th>
+                </tr>
+              </thead>
+            <tbody>
+                <tr *ngFor="let dr of drivers">
+                  <td>{{dr.name}}</td>
+                  <td>{{dr.email}}</td>
+                  <td>{{dr.phone}}</td>
+                  <td>{{dr.age}}</td>
+                </tr>
+              </tbody>
+          </table>
           </div>
 
 

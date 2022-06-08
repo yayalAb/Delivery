@@ -1,6 +1,7 @@
 import { Component,  ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { SidebarComponent, TreeViewComponent } from '@syncfusion/ej2-angular-navigations';
+import { AuthGuard } from './core-module/auth-module/guard/guard.guard';
 
 @Component({
   selector: 'app-root',
@@ -18,26 +19,46 @@ export class AppComponent {
   public dockSize:string ="44px";
   public mediaQuery: string = ('(min-width: 600px)');
   public target: string = '.main-content';
-  id!:number;
-  constructor(private router:Router){
-
+  id:any="";
+  public data!: Object[];
+  public authUser!:Object[];
+  constructor(private router:Router, private rout:AuthGuard){  }
+  ngOnInit(): void { 
   }
 
-  public data: Object[] = [
-      {
-          nodeId: '01', nodeText: 'Products', iconCss: 'icon-microchip icon', url:'/feature/product/product/list'
-      },
-         {
-          nodeId: '02', nodeText:  'Vehicle', iconCss: '.e-font icon', url:'/feature/vehicle/vehicle/list'
-         },
-         {
-            nodeId: '03', nodeText:  'Drivers', iconCss: '.e-font icon', url:'/feature/driver/driver/list'
-           },
-           {
-            nodeId: '04', nodeText:  'Order', iconCss: '.e-font icon', url:'/feature/delivery/delivery/list'
-           } 
+  
+
+  dataSource(){
+      
+  this.data= [
+    {
+        nodeId: '01', nodeText: 'Products', iconCss: 'icon-microchip icon', url:'/feature/product/product/list'
+    },
+     {
+      nodeId: '02', nodeText:  'Vehicle', iconCss: '.e-font icon', url:'/feature/vehicle/vehicle/list'
+     }    
+];
+
+this.authUser =[
+    {
+        nodeId: '03', nodeText:  'Drivers', iconCss: '.e-font icon', url:'/feature/driver/driver/list'
+       },
+       {
+        nodeId: '04', nodeText:  'Order', iconCss: '.e-font icon', url:'/feature/delivery/delivery/list'
+       } 
   ];
-  public field:Object ={ dataSource: this.data, id: 'nodeId', text: 'nodeText', child: 'nodeChild', iconCss: 'iconCss'};
+    if(this.rout.isLoggedIn()){
+        for( let a of this.authUser ){
+            this.data.push(a)
+        }
+    }
+  return this.data;
+  }
+
+  
+
+  
+  public field:Object ={ dataSource: this.dataSource(), id: 'nodeId', text: 'nodeText', child: 'nodeChild', iconCss: 'iconCss'};
 
   public onCreated(args: any) {
        this.sidebarTreeviewInstance.element.style.visibility = '';
@@ -63,54 +84,3 @@ export class AppComponent {
       this.router.navigate([url])
   }
 }
-
-
-// console.log("data : ",data)
-// console.log("index 0  : ",data[0]['url'] )
-// console.log("index count  : ",data[this.count]['url'] )
-// this.count++;
-
-
-//   {
-    //       nodeId: '02', nodeText: 'Deployment', iconCss: 'e-icons e-fon',
-    //   },
-    //   {
-    //       nodeId: '03', nodeText: 'Quick Start', iconCss: 'icon-docs-icon',
-    //   },
-    //   {
-    //       nodeId: '04', nodeText: 'Components', iconCss: 'icon-th icon',
-    //       nodeChild: [
-    //           { nodeId: '04-01', nodeText: 'Calendar', iconCss: 'icon-circle-thin icon' },
-    //           { nodeId: '04-02', nodeText: 'DatePicker', iconCss: 'icon-circle-thin icon' },
-    //           { nodeId: '04-03', nodeText: 'DateTimePicker', iconCss: 'icon-circle-thin icon' },
-    //           { nodeId: '04-04', nodeText: 'DateRangePicker', iconCss: 'icon-circle-thin icon' },
-    //           { nodeId: '04-05', nodeText: 'TimePicker', iconCss: 'icon-circle-thin icon' },
-    //           { nodeId: '04-06', nodeText: 'SideBar', iconCss: 'icon-circle-thin icon' }
-    //       ]
-    //   },
-    //   {
-    //       nodeId: '05', nodeText: 'API Reference', iconCss: 'icon-code icon',
-    //       nodeChild: [
-    //           { nodeId: '05-01', nodeText: 'Calendar', iconCss: 'icon-circle-thin icon' },
-    //           { nodeId: '05-02', nodeText: 'DatePicker', iconCss: 'icon-circle-thin icon' },
-    //           { nodeId: '05-03', nodeText: 'DateTimePicker', iconCss: 'icon-circle-thin icon' },
-    //           { nodeId: '05-04', nodeText: 'DateRangePicker', iconCss: 'icon-circle-thin icon' },
-    //           { nodeId: '05-05', nodeText: 'TimePicker', iconCss: 'icon-circle-thin icon' },
-    //           { nodeId: '05-06', nodeText: 'SideBar', iconCss: 'icon-circle-thin icon' }
-    //       ]
-    //   },
-    //   {
-    //       nodeId: '06', nodeText: 'Browser Compatibility', iconCss: 'icon-chrome icon'
-    //   },
-    //   {
-    //       nodeId: '07', nodeText: 'Upgrade Packages', iconCss: 'icon-up-hand icon'
-    //   },
-    //   {
-    //       nodeId: '08', nodeText: 'Release Notes', iconCss: 'icon-bookmark-empty icon'
-    //   },
-    //   {
-    //       nodeId: '09', nodeText: 'FAQ', iconCss: 'icon-help-circled icon'
-    //   },
-    //   {
-    //       nodeId: '10', nodeText: 'License', iconCss: 'icon-doc-text icon'
-    //   }

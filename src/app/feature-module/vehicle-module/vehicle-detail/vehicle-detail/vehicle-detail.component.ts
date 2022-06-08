@@ -32,6 +32,7 @@ export class VehicleDetailComponent implements OnInit {
 
   @Output()
   submitted = new EventEmitter<FormGroup>();
+  
 
   form = this.fb.group({
     owner: ['', Validators.required],
