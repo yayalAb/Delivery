@@ -4,13 +4,18 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { CoreModuleModule } from './core-module/core-module.module';
 import { FeatureModuleModule } from './feature-module/feature-module.module';
 import { SidebarModule, TreeViewModule } from '@syncfusion/ej2-angular-navigations';
+
+
+
 export const ROUTES:Routes=[
   {path:'',
   children:[
-    {path:'', loadChildren:()=>import('./feature-module/product/product.module').then(x=>x.ProductModule)},
+
+    {path:'', loadChildren:()=>import('./core-module/dashboard/dashboard.module').then(x=>x.DashboardModule)},
   ]
  }
   

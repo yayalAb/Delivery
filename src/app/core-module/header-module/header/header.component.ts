@@ -1,4 +1,6 @@
+import { EventEmitter, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,6 +11,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   id:any=""
   constructor(private router:Router) { }
+  @Output()
+   logou= new EventEmitter<FormGroup>();
 
   ngOnInit(): void {
     this.id = localStorage.getItem('token');  
@@ -16,8 +20,9 @@ export class HeaderComponent implements OnInit {
 
   logout() :void {    
     localStorage.setItem('isLoggedIn','false');    
-    localStorage.removeItem('token');  
-    window.location.reload()
+    localStorage.removeItem('token'); 
+    this.logou.emit() 
+    // window.location.reload()
     this.router.navigate(['/core/auth/login'])
 
     } 

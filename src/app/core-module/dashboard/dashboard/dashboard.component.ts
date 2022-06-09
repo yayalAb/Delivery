@@ -11,5 +11,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  public cellSpacing: number[] = [10, 10];
 
 }
