@@ -4,10 +4,8 @@
     width: 500px;
 }
 
-.dashbord{
-    margin: 2%;
-    background-color: aliceblue;
-    border: 0.5px;
+.dashboard{
+    margin: 3%;
 }
 .first{
     background-color: green;
@@ -28,4 +26,26 @@
 
 .text-align {
     line-height: 90px;
+}
+p{
+    color: white;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 5%;
+}
+a{
+    color: white;
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 5%;
+}
+h3{
+    color: white;
+    font-size: 24px;
+    margin-left: 5%;
+
+}
+img{
+    width: 40px;
+    height: 40px;
 }

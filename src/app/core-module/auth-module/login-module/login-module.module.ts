@@ -21,6 +21,9 @@ export const ROUTES:Routes=[
     AuthSharedModule,
     HttpClientModule,
     CoreModuleModule.forRoot()
+  ],
+  exports:[
+    LoginComponent
   ]
 })
 export class LoginModuleModule { }

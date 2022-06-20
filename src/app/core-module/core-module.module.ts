@@ -10,8 +10,8 @@ import { AuthGuard } from './auth-module/guard/guard.guard';
 export const ROUTES:Routes=[
   {path:'core',
   children :[
-    { path:'', loadChildren:()=>import('./auth-module/auth-module.module').then(x=>x.AuthModuleModule)}
-    ,{path:'dashboard', loadChildren:()=>import('./dashboard/dashboard.module').then(x=>x.DashboardModule)}
+    // { path:'login', loadChildren:()=>import('./auth-module/auth-module.module').then(x=>x.AuthModuleModule)}
+    {path:'', loadChildren:()=>import('./dashboard/dashboard.module').then(x=>x.DashboardModule)}
   ]
    }
 ]
@@ -25,7 +25,7 @@ export const ROUTES:Routes=[
     RouterModule.forChild(ROUTES)
   ],
   exports:[
-    HeaderModuleModule
+    HeaderModuleModule,
   ]
 })
 export class CoreModuleModule {

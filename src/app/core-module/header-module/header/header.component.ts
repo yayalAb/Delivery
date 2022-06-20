@@ -21,8 +21,8 @@ export class HeaderComponent implements OnInit {
   logout() :void {    
     localStorage.setItem('isLoggedIn','false');    
     localStorage.removeItem('token'); 
-    this.logou.emit() 
-    // window.location.reload()
+    this.ngOnInit();
+    window.location.reload ();
     this.router.navigate(['/core/auth/login'])
 
     } 

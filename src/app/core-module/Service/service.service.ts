@@ -24,7 +24,7 @@ export class ServiceService {
     
   }
   deleteService(url:string){
-    return this.http.delete(PASSENGER_API+url, {headers});
+    return this.http.delete(PASSENGER_API+url, {headers}).subscribe();
   }
 
   logout() :void {    

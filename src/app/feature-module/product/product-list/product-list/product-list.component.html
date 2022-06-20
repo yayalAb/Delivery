@@ -1,25 +1,23 @@
 <div class="product">
-  <div *ngIf="productList.length">
+  <div>
     <div class="list">
       <h3>Product List</h3>
-      <ejs-grid [dataSource]='productList' [allowPaging]="true" [allowSorting]="true"
-        [allowFiltering]="true" [pageSettings]="pageSettings" (nodeClicked)="EventHandler($event)" >
-          <e-columns>
+      <div class="control-section">
+        <ejs-grid [dataSource]='productList'  allowPaging='true'   (actionBegin)="actionBegin($event)" ConfirmDelete='true' (actionComplete)="actionComplete($event)"  [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar' height='273px'>
+        <e-columns>
               <e-column field='name' headerText='Name' textAlign='left' width=20%></e-column>
               <e-column field='quality' headerText='Quality' textAlign='left' width=20%></e-column>
-              <e-column field='exDate' headerText='Expair Date' textAlign='left' width=20%></e-column>
-              <e-column field='content' headerText='Content' textAlign='left' width=20%></e-column>
+              <e-column field='exDate' headerText='Expair Date' editType="datepickeredit" textAlign='left' width=20%></e-column>
+              <e-column field='content' headerText='Content' editType="numericedit" textAlign='left' width=20%></e-column>
           </e-columns>
-         
           </ejs-grid>
         </div>
     </div>
     <div *ngIf="!productList.length">
       <h3>You Have No Product Please Add New Product</h3>
   </div>
-  <!-- <button ejs-button cssClass="e-success" content="Button"></button> -->
+
   <button ejs-button cssClass='btn-success'><a cssClass='btn-success' routerLink="/feature/product/product/detail">Add Product</a></button>
-   <!-- <button class="btn-success" routerLink="/feature/product/product/detail"><img src="assets/img/add.svg" routerLink="/feature/product/product/detail/product/detail">Add Product</button> -->
 </div>
 <!-- 
 <div class="product">

@@ -33,10 +33,12 @@ export class LoginComponent  {
    // console.log("user Fro server",this.authservice.loginUser(event.value.email))
  if(event.value.email==="yayalabayneh2@gmail.com"&& event.value.password==="123456"){   
       localStorage.setItem('isLoggedIn', "true");  
+      localStorage.setItem('role', event.value.UserType); 
       localStorage.setItem('token', event.value.email); 
-      this.login.emit(event);
-      this.login.emit(event);
-     this.route.navigate(['/feature/product/product/list'])
+      this.ngOnInit();
+      this.error=true;
+      this.route.navigate(['/feature/product/product/list'])
+      window.location.reload ();
    }else{
      this.error=true;
      this.massage="Wrong Password Or Email"

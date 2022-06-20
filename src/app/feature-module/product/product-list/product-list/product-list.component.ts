@@ -4,28 +4,63 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/core-module/Service/service.service';
 import { ProductDetailComponent } from '../../product-detail/product-detail/product-detail.component';
-import {PageSettingsModel } from '@syncfusion/ej2-angular-grids';
+import {EditSettingsModel, PageSettingsModel, SaveEventArgs, ToolbarItems } from '@syncfusion/ej2-angular-grids';
 import { GridComponent, RowSelectEventArgs } from '@syncfusion/ej2-angular-grids';
 import { FormGroup } from '@angular/forms';
 import { Input } from '@angular/core';
+import { L10n } from '@syncfusion/ej2-base';
+
+L10n.load({
+  'en-US': {
+      grid: {
+          'SaveButton': 'Submit',
+          'CancelButton': 'Discard',
+          'EditFormTitle':'Update Product',
+          'AddFormTitle':'Add New Product'
+          
+      }
+  }
+});
+
+interface product{
+  id:number;
+  name:string;
+  quality:string;
+  exDate:Date;
+  content:number;
+
+}
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+
+  @ViewChild('grid')
+  public grid!: GridComponent;
+  public editSettings!: EditSettingsModel;
+  public toolbar!: ToolbarItems[];
+  public pageSettings!: Object;
+  public formatoptions!: Object;
   url:string=""
   @Output()
   updating:boolean=false
   toggle:boolean=false
-  public pageSettings: any="";
+
   constructor( private productService: ServiceService, private router:Router) { }
   //, private comp:ProductDetailComponent
   productList:any="";
   EditProduct:any=""
   
+  
+
   ngOnInit(): void {
-    this.productService.getService('product').subscribe(response => {
+
+      this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Dialog', showDeleteConfirmDialog: true };
+      this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+      this.productService.getService('product').subscribe(response => {
       this.productList = response;
       this.pageSettings = { pageSize: 6 };
   });
@@ -34,9 +69,13 @@ export class ProductListComponent implements OnInit {
   deleteProduct(id:number){
     this.url="product/"+id;
     this.toggle=!this.toggle;
-    return this.productService.deleteService(this.url).subscribe();
+    return this.productService.deleteService(this.url)
   }
-  @Input()
+
+  @Output()
+  edit = new EventEmitter<FormGroup>();
+
+  @Output()
   deleted = new EventEmitter<FormGroup>();
   
   editProduct(id:number){
@@ -44,21 +83,45 @@ export class ProductListComponent implements OnInit {
     this.url="product/"+id
     this.productService.getService(this.url).subscribe(response => {
     this.EditProduct = response;
-   // this.ngOnInit()
   });
   this.updating=true
    this.router.navigate(['/feature/product/product/detail/'+id])
   }
-  @ViewChild('grid')
-  public grid: any="";
-  rowSelected(args: RowSelectEventArgs) {
-    const selectedrowindex: number[] = this.grid.getSelectedRowIndexes();  // Get the selected row indexes.
-    alert(selectedrowindex); // To alert the selected row indexes.
-    const selectedrecords: object[] = this.grid.getSelectedRecords();  // Get the selected records.
+
+addbig:boolean=false;
+editbig:boolean=false;
+
+actionBegin(args:any) {
+  if (args.requestType === 'beginEdit') {
+       this.editbig=true;
+       }   
+  if (args.requestType === 'add'){
+     this.addbig=true;
+       }    
 }
 
-EventHandler(event:any){
-  console.log("event  handler:")
+actionComplete(args: any) {
+  if (args.requestType === 'save' ) {
+      if(this.addbig){
+        this.url="product"
+        this.productService.postService(this.url, args.data);
+        this.addbig=false;
+        alert("Product Added Successfuly")
+      }
+      else if(this.editbig){
+        this.productService.putService('product/'+args.data.id, args.data);
+        this.editbig=false;
+        alert("Product Updated Successfuly")
+
+      }else{
+
+      }
+  }
+  if (args.requestType === 'delete'){
+          // this.url='product/'+args.rowdata.id;
+            console.log("row data : ", args.data);
+          // this.productService.deleteService(this.url);
+        } 
 }
 
 }

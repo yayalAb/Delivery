@@ -1,13 +1,14 @@
 <div class="product">
     <div *ngIf="VehicleList.length">
       <h3>Vehicle List</h3>
-        <table class="table table-bordered">
-          <tr>
+      <table class="table table-hover">
+        <thead>
             <th >Vehicle Owner</th>
             <th >Driver</th>
             <th >type</th>
             <th >model</th>
-          </tr>
+        </thead>
+        <tbody>
            <tr *ngFor="let vec of VehicleList"> 
             <td>{{vec.owner}}</td>
             <td>{{vec.driver}}</td>
@@ -16,6 +17,7 @@
             <td><img src="/assets/img/remove.svg" (click)="deletevehicle(vec.id)"></td>
             <td><img src="/assets/img/pencil.png" (click)="editvehicle(vec.id)"></td>
           </tr>
+        </tbody>
         </table>
     </div>
     <div *ngIf="!VehicleList.length">

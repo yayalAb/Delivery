@@ -9,13 +9,15 @@ import { CoreModuleModule } from './core-module/core-module.module';
 import { FeatureModuleModule } from './feature-module/feature-module.module';
 import { SidebarModule, TreeViewModule } from '@syncfusion/ej2-angular-navigations';
 
+import { LoginModuleModule } from './core-module/auth-module/login-module/login-module.module';
+import { LoginComponent } from './core-module/auth-module/login-module/login/login.component';
+
 
 
 export const ROUTES:Routes=[
   {path:'',
   children:[
-
-    {path:'', loadChildren:()=>import('./core-module/dashboard/dashboard.module').then(x=>x.DashboardModule)},
+    {path:'', loadChildren:()=>import('./core-module/core-module.module').then(x=>x.CoreModuleModule)},
   ]
  }
   
@@ -32,7 +34,8 @@ export const ROUTES:Routes=[
     FeatureModuleModule,
     RouterModule.forChild(ROUTES),
     SidebarModule,
-    TreeViewModule
+    TreeViewModule,
+    LoginModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
