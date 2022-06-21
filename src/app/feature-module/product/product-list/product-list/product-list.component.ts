@@ -118,9 +118,9 @@ actionComplete(args: any) {
       }
   }
   if (args.requestType === 'delete'){
-          // this.url='product/'+args.rowdata.id;
-            console.log("row data : ", args.data);
-          // this.productService.deleteService(this.url);
+          this.url='product/'+args.rowdata.id;
+            // console.log("row data : ", args.data);
+          this.productService.deleteService(this.url);
         } 
 }
 

@@ -19,7 +19,7 @@ export class ServiceService {
   getService(url:string){
       return this.http.get(PASSENGER_API+url);
   }
-  putService(url:string,event:any ){
+  async putService(url:string,event:any ){
     return this.http.put(PASSENGER_API+url, event,{headers}).subscribe(); 
     
   }
