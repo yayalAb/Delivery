@@ -4,6 +4,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/core-module/Service/service.service';
+import { user } from '../../user';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,8 @@ import { ServiceService } from 'src/app/core-module/Service/service.service';
 export class LoginComponent  {
 
   error:boolean=false
-  massage:String=""
-  user:any;
+  massage!:String;
+  user!:any;
  constructor( private route:Router,
   private authService : ServiceService) { }
  ngOnInit(): void {
@@ -32,26 +33,25 @@ export class LoginComponent  {
 
  async loginUser(event: FormGroup) {
    try{
-   this.authService.getService("auth/" + event.value.email).subscribe(
-       response => { this.user = response; });
-   }
-   catch{
+      await this.authService.getService("auth/" + event.value.email).subscribe(
+          response => { this.user = response;
+            if(event.value.email===this.user.email&& event.value.password===this.user.password){  
+                 localStorage.setItem('isLoggedIn', "true");  
+                 localStorage.setItem('role', this.user.UserType); 
+                 localStorage.setItem('token', event.value.email); 
+                 this.route.navigate(['/feature/product/product/list'])
+              }
+              else{
+                this.error=true;
+                this.massage="Wrong Password Or Email";
+                console.log("error on login")
+              }
+          }); 
+      }
+  catch{
     this.massage="Error";
-   }
-  console.log("user : ", this.user)
- if(event.value.email==="yayalabayneh2@gmail.com"&& event.value.password==="123456"){   
-      localStorage.setItem('isLoggedIn', "true");  
-     // localStorage.setItem('role', event.value.UserType); 
-      localStorage.setItem('token', event.value.email); 
-      this.ngOnInit();
-      this.error=true;
-      this.route.navigate(['/feature/product/product/list'])
-     window.location.reload ();
-   }
-   else{
-     this.error=true;
-     this.massage="Wrong Password Or Email"
-   }
+  }
+ 
  }
  logOut(){
    this.logout.emit();

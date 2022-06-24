@@ -10,20 +10,18 @@ import { ServiceService } from 'src/app/core-module/Service/service.service';
 })
 export class SignupComponent {
 
- massage!:string;
-  constructor(private authService:ServiceService) { }
+   massage!:string;
+   error!:string;
+   constructor(private authService:ServiceService) { }
    signUp:boolean=true
-  ngOnInit(): void {
+   ngOnInit(): void {
   }
   async SignUpUser(event: FormGroup) {
     try{
-      const { email, password } = event.value;
-       console.log("Sign Up User", event.value );
-       this.authService.postService('auth',event.value)
+      await this.authService.postService('auth',event.value)
+      this.massage="SignUp Successfuly"
     }catch(err){
-      this.massage="error on Signup";
+      this.error="error on Signup";
     }
   }
-
-
 }
