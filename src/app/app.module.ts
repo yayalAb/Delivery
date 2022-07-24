@@ -7,10 +7,9 @@ import { AppComponent } from './app.component';
 
 import { CoreModuleModule } from './core-module/core-module.module';
 import { FeatureModuleModule } from './feature-module/feature-module.module';
-import { SidebarModule, TreeViewModule } from '@syncfusion/ej2-angular-navigations';
 
 import { LoginModuleModule } from './core-module/auth-module/login-module/login-module.module';
-import { LoginComponent } from './core-module/auth-module/login-module/login/login.component';
+// import { LoginComponent } from './core-module/auth-module/login-module/login/login.component';
 
 
 
@@ -30,11 +29,9 @@ export const ROUTES:Routes=[
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModuleModule,
+    CoreModuleModule.forRoot(),
     FeatureModuleModule,
     RouterModule.forChild(ROUTES),
-    SidebarModule,
-    TreeViewModule,
     LoginModuleModule
   ],
   providers: [],

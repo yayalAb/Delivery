@@ -1,0 +1,24 @@
+<div *ngIf="data|async as data">
+    <div class="link">
+        <!-- <a>back to List</a> -->
+    <button class="btn-success" routerLink="/feature/delivery/delivery/detail">New Order</button>
+    </div>
+        <ejs-grid [dataSource]='data' [allowPaging]="true" [allowSorting]="true" [pageSettings]='pageSettings'>
+            <e-columns>
+                <e-column field='orderedBy' headerText='Order By' textAlign='left' width=15%></e-column>
+                <e-column field='driver' headerText='Driver'width=15%></e-column>
+                <e-column field='start' headerText='Start' textAlign='left' width=15%></e-column>
+                <e-column field='destination' headerText='Destination' textAlign='left' width=15%></e-column>
+                <e-column field='status' headerText='Status' width=10%></e-column>
+                <e-column field='viewdetail' headerText='Action' textAlign='Right' width=20%>
+                    <ng-template #template let-data>
+                        <div>
+                            <button (click)="deleteOrder(data.id)">Delete</button>
+                            <button (click)="detailOrder(data.id)">Detail</button>
+                        </div>
+                    </ng-template>
+                </e-column>
+            </e-columns>
+        </ejs-grid>
+</div>
+

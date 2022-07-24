@@ -1,10 +1,11 @@
 <div class=" container-fluid ">
     <div class="header">
-        <img src="assets/img/icons8-delivery.gif">
-        <h1>Dilvey System</h1>
-        <!-- <button ejs-button cssClass="e-info" content="Button"></button> -->
-        <a *ngIf="!id" class="btn-default" routerLink="/core/auth/login">Login</a>
-        <a *ngIf="id" class="btn-default" (click)="logout()" >logout</a>
+        <img src="assets/img/icons8-delivery-100.png">
+        <h1>Delivery System</h1>
+        <!-- <a *ngIf="!id" class="btn-default" routerLink="/core/auth/login">Login</a> -->
+        <button *ngIf="user" type="button" class="btn btn-outline-info" (click)="logout()">logout</button>
+        <!-- <a  *ngIf="user" class="btn-default" (click)="logout()" >logout</a> -->
+       <!-- <app-button></app-button> -->
     </div>
     
 </div>

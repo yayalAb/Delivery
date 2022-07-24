@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ServiceService } from 'src/app/core-module/Service/service.service';
 
 @Component({
@@ -9,23 +10,32 @@ import { ServiceService } from 'src/app/core-module/Service/service.service';
 })
 export class DeliveryListComponent implements OnInit {
 
-  deliveryList:any=''
+  deliveryList!:Observable<any>;
   constructor(private deliveryService:ServiceService,private router:Router ) { }
 
 
 
-  ngOnInit(): void {
-    this.deliveryService.getService('delivery').subscribe(response => {
-      this.deliveryList = response;
-  });
+  async ngOnInit(){
+    this.deliveryList = this.deliveryService.getService('Orders');
+}
+
+
+deleteOrder(event:any){
+  this.deliveryService.deleteService('Orders/'+event);
+  this.deliveryList = this.deliveryService.getService('Orders');
+}
+detalilOrder(event:any){
+  this.router.navigate(['/feature/delivery/delivery/detail/'+event]);
+  console.log("detail emited");
+
 }
 
 deleteDelivery(id:number){
 
 }
 
-  editDelivery(id:number){
-    this.router.navigate(['/feature/driver/driver/detail/'+id])
+  async editDelivery(id:number){
+     await this.router.navigate(['/feature/driver/driver/detail/'+id])
   }
 
 }

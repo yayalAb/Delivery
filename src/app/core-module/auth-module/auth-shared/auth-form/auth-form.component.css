@@ -3,14 +3,14 @@
 
 }
 .loginform{
-    background: #fff;
+    /* background: #fff; */
     box-shadow: 0 3px 4px rgba(0,0,0,.1);
     border-radius: 3px;
     padding: 10px; 
-    max-width: 500px;
+    max-width: 550px;
     /* text-align: center; */
     margin: 10px auto;
-    border: 1px solid rgb(14, 17, 233);
+    border: 0.5px solid rgb(159, 160, 184);
 }
 label{
     text-align: left;
@@ -28,14 +28,18 @@ input,button{
     transform: translateX(-50%);
     margin-bottom: 20px;
 }
-
+.fildes{
+    background-color: aliceblue;
+    padding: 5px;
+}
 
   .containers{
     display: flex;
 
   }
   .error{
-      color: red;
+      color: rgb(150, 11, 11);
+      text-align: center;
   }
 
 

@@ -14,7 +14,6 @@
                 <input class="form-control" type="text" placeholder="User type" formControlName="UserType">
               </div>
             </div>
-  
             <label>Password</label>
             <div>
               <input class="form-control" type="password" placeholder="Enter password" formControlName="password">
@@ -22,13 +21,14 @@
           </div>
           
             <div class="error" *ngIf="emailFormat">
-              Invalid email format, please enter Valid email
+              <p class="text-danger">Invalid email format, please enter Valid email.</p>
             </div>
       
             <div class="error" *ngIf="passwordInvalid">
-              Password is required and min length 6
+              <p class="text-danger"> Password is required and min length 6</p>
+             
             </div>
-            <ng-content select=".error"></ng-content>
+            <ng-content class="text-danger" select=".error"></ng-content>
             <div class="buttons">
             <div>
               <ng-content select="button"></ng-content>

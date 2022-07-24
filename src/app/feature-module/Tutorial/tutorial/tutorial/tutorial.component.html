@@ -1,0 +1,22 @@
+<p>tutorial works!</p>
+<app-passanger-count [detail]="passangers">
+
+</app-passanger-count>
+<app-passanger-detail *ngFor="let pas of  passangers;" [detail]="pas"
+(remove)="handleRemove($event)"
+(edit)="handleEdit($event)">
+
+</app-passanger-detail>
+<div>
+    <input [value]="name" (input)="handleChange($event)">
+</div>
+<div>
+    {{name}}
+</div>
+<div *ngFor="let pas of passangers; let i=index">
+   {{i}} : {{pas|json}}
+   <div>
+    <p>Checked In Date :{{pas.CheckedInDate | date:'yMMMMd' | uppercase}}</p>
+   </div>
+
+</div>

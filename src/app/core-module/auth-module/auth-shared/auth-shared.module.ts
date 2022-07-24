@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthFormComponent } from './auth-form/auth-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TextBoxModule } from '@syncfusion/ej2-angular-inputs';
 
 
 
@@ -11,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    TextBoxModule,
+    ReactiveFormsModule,
     ReactiveFormsModule
   ],
   exports :[

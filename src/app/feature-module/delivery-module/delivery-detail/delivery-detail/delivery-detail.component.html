@@ -1,59 +1,69 @@
 
 <div class="pos">
-    <div class="deliveryForm">
+    <div class="deliveryForm" *ngIf="productsList | async" >
       <form [formGroup]="form"  (ngSubmit)="onSubmit($event)" >
-        <h1 class="title">{{ deliver ? 'Edit' : 'Request' }}   Delivery</h1>
+        <h1 class="title">{{ orderId ? 'Edit Order' : 'Order Here' }}   </h1>
             <div class="Inputs"> 
-              <div class='textboxes'>
-                <ejs-dropdownlist id='ddlelement' [dataSource]='driver' formControlName="driver"  placeholder='Select a driver' ></ejs-dropdownlist>
-               </div>  
-               <div class='textboxes'>
-                <ejs-textbox  placeholder="Start" floatLabelType="Always" formControlName="start" ></ejs-textbox>
-              </div>
-              <div class='textboxes'>
-                <ejs-textbox  placeholder="End" floatLabelType="Always"  formControlName="end" ></ejs-textbox>
-              </div>  
-              <div>
-              <div>
-                <div class="product" formArrayName="product">
-                  <label *ngFor="let c of product.controls; index as i;">
-                    <ejs-dropdownlist id='ddlelement' [dataSource]='data' [formControlName]="i" placeholder='Select a product' ></ejs-dropdownlist>
-                    <span
-                      class="meal-form__remove"
-                      (click)="removeproduct(i)">
-                    </span>
-                  </label>
+              <div formGroupName="orders">
+                <div class='textboxes'>
+                  <ejs-textbox class="form-control" placeholder="Rrdered By" floatLabelType="Always" formControlName="orderedBy" readonly></ejs-textbox>
                 </div>
-                <div class="quantity" formArrayName="quantity">
-                  <label *ngFor="let c of quantity.controls; index as i;">
-                    <!-- <ejs-numerictextbox value='10' formControlName="age" [ngModel]="data.age"></ejs-numerictextbox> -->
-                    <ejs-textbox  [formControlName]="i" type="number" placeholder="quantity" floatLabelType="Always"  formControlName="end" ></ejs-textbox>
-                    <span
-                      class="meal-form__remove"
-                      (click)="removeproduct(i)">
-                    </span>
-                  </label>
+                <div class='textboxes'>
+                  <ejs-dropdownlist class="form-control" id='ddlelement' [dataSource]='driver'  formControlName="driver" [ngModel]="data?.driver" placeholder='Select a driver' ></ejs-dropdownlist>
+                 </div>  
+                 <div class='textboxes'>
+                  <ejs-textbox class="form-control" placeholder="Start" floatLabelType="Always" formControlName="start" [ngModel]="data?.start"></ejs-textbox>
+                </div>
+                <div class='textboxes'>
+                  <ejs-textbox class="form-control" placeholder="Destination" floatLabelType="Always"  formControlName="destination" [ngModel]="data?.destination"></ejs-textbox>
                 </div>
               </div>
-              <button 
-                type="button"
-                class="btn-success"
-                (click)="addproduct()">
-                <img src="/assets/img/add-white.svg">
-                Add More
-              </button>
-                
-              </div>   
-            <div class="buttons">    
+              <div formGroupName="selector">
+                  <div class="selectorClass"  *ngIf="productsList | async as prods">
+                    <div class="optionClass">
+                        <ejs-dropdownlist id='ddlelement' class="form-control"  [dataSource]='productList' [fields]="localFields" formControlName="product_Id"  [placeholder]='LocalWaterMark' ></ejs-dropdownlist>
+                    </div>        
+                    <div class="quantity">
+                      <ejs-numerictextbox  class="form-control" 
+                        step="10" min="10" max="1000" formControlName="quantity"></ejs-numerictextbox>
+                    </div>
+                    <button ejs-button type="button" 
+                    (click)="onAdd()"  class="AddButton btn-info"> Add Product</button>
+                 </div>
+               </div>
+                  <div class="buttons">    
+                      <div>
+                        <button ejs-button type="submit" class="btn-success">
+                          {{ orderId ? 'Update Order' : 'Order ' }}
+                        </button>
+                      </div>
+                     <div class="alink">
+                      <a routerLink="/feature/delivery/delivery/list">Back To List</a>
+                     </div>
+                  </div>  
+               </div>
+              <div class="fromarray">
+                <div FormArrayName="products">
+                  <div *ngFor="let item of products; let i = index;">
+                    <div class="orders_array" [formGroupName]="i">
+                        <div class="arrayList">
+                          <p>{{item.value.product_Id}}</p> 
+                          <p  class="carrancy">{{item.value.Price| currency:'USD':true}} </p>
+                          <ejs-numerictextbox  class="inputclass form-control"  step="10"  min="10"  max="1000" [value]="item.value.quantity" formControlName="quantity"></ejs-numerictextbox>
+                          <button class="RemoveButton  btn-danger" type="button" (click)="onRemove(item, i)">  Remove   </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
               <div>
-                <button class="btn-success"> {{ deliver ? 'Update ' : 'New ' }}  Request</button>
-              </div>
-              <a routerLink="/feature/delivery/delivery/list">back to delivery</a>
-            </div>  
+            <div>
           </div>
+        </div>   
       </form>
+      <pre>{{orderedProductList|json}}</pre>
+      <pre>{{form.value | json}}</pre>
     </div>
   </div>
 
- <!-- <input type="number"  [formControlName]="i" placeholder="quantity" class="form-control"> -->
 

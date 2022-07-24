@@ -1,0 +1,9 @@
+.link{
+    display: flex;
+    margin-left: 90%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+a{
+    margin-right: 15px;
+}

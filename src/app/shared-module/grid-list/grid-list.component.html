@@ -1,0 +1,17 @@
+<div class="display">
+    <div>
+      <div class="list" *ngIf="displaylist | async as Dispplay_List">
+        <h3>{{Title}} List</h3>
+        <div class="control-section">
+          <ejs-grid [dataSource]='Dispplay_List'  allowPaging='true'   (actionBegin)="actionBegin($event)" ConfirmDelete='true' (actionComplete)="actionComplete($event)"  [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar' height='80%' >
+          <e-columns>
+                <e-column *ngFor="let li of list" field={{li.fieldName}} headerText={{li.Title}} editType={{li.EditType}}  textAlign='left' width=15%></e-column>
+            </e-columns>
+            </ejs-grid>
+          </div>
+      </div>
+      <div *ngIf="!(displaylist | async)">
+        <h3>Feaching {{Title}} ........</h3>
+    </div>
+  </div>
+  

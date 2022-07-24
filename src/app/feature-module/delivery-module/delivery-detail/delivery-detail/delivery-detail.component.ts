@@ -1,7 +1,13 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ServiceService } from 'src/app/core-module/Service/service.service';
+import { Observable } from 'rxjs';
+import { Product } from 'src/app/models/product';
+ interface lists{
+     code:number,
+     name:string
+ }
 
 @Component({
   selector: 'app-delivery-detail',
@@ -9,7 +15,20 @@ import { ServiceService } from 'src/app/core-module/Service/service.service';
   styleUrls: ['./delivery-detail.component.css']
 })
 export class DeliveryDetailComponent implements OnInit {
-  deliver:any=""
+  productsList!:Observable<any>;
+  orderedProductList:any;
+  product1!:any;
+  data!:any;
+  
+  productList:lists[]=[];
+  ordersList!:any;
+  sngproduct:lists={
+    code:1,
+     name:""
+  };
+  obj:any;
+  sinpro  :Product[]=[];
+  total :number=0;
   toggle:boolean=false
   constructor(
     private fb: FormBuilder,
@@ -18,51 +37,149 @@ export class DeliveryDetailComponent implements OnInit {
     private router1:ActivatedRoute
   ) { }
 
-  driver:any=""
-  ngOnInit(): void {
-    // this.Serves.getService('driver').subscribe(response => {
-    //   this.driver = response;
-    // });
-    this.driver= ['driver1', 'driver2', 'driver3', 'driver4', 'driver5'];
+  public driver= ['driver1', 'driver2', 'driver3', 'driver4', 'driver5'];
+  orderId:any="";
+  ngOnInit(): void { 
+   
+    this.productsList=this.Serves.getService('Product');
+    this.router1.paramMap.subscribe((params:ParamMap)=>{
+      this.orderId=params.get('id')
+    })
+    if(this.orderId){
+      this.Serves.getService('Orders/'+this.orderId).subscribe(response => {
+        this.data = response;  
+    });
+    this.Serves.getService('OrderLists').subscribe(response => {
+      this.orderedProductList = response;  
+      this.orderedProductList=this.orderedProductList.filter((item:any)=>item.orderId==this.orderId);
+      for(let ordLis of this.orderedProductList){
+          const control=this.form.get('products') as FormArray;
+          this.form.get(['selector','product_Id'])?.setValue(ordLis.product_Id);
+          this.form.get(['selector','Price'])?.setValue(ordLis.price);
+          this.form.get(['selector','quantity'])?.setValue(ordLis.quantity);
+          this.form.get(['selector','OrderId'])?.setValue(ordLis.orderId);
+          control.push(this.createProduct(this.form.get('selector')?.value));
+
+      }
+           
+
+  });
+    }
+ 
+     this.Serves.getService('Product').subscribe(response => {
+      this.product1 = response;
+      for(let lis of this.product1){
+        this.sngproduct=
+          {
+            code:lis.id,
+            name:lis.productName
+          }
+          this.productList.push(this.sngproduct);
+      }
+     });
+
+
+    // this.form.get('products')?.valueChanges.subscribe(value => {
+    //                 console.log("Chenged");             
+    // });  
   }
-   data=['product1', 'product2', 'product3', 'product4', 'product5']
-   @Output()
-   remove = new EventEmitter<FormGroup>();
-  
-  @Output()
-  submitted = new EventEmitter<FormGroup>();
+public localFields:Object={text:'name', value:'code'};
+public LocalWaterMark:string='Select Product';
   form = this.fb.group({
-    driver: ['', Validators.required],
-    start: ['', Validators.required],
-    end: ['', Validators.email],
-    product:this.fb.array(['']),
-    quantity:this.fb.array([''])
+    orders:this.fb.group({
+      orderedBy: [localStorage.getItem('token'), Validators.email],
+      driver:['', Validators.required],
+      start: ['', Validators.required],
+      destination: ['', Validators.required],
+      status: [false, Validators.required],
+    }),
+    selector:this.fb.group({
+      OrderId:'',
+      product_Id:0,
+      quantity:'10',
+      Price:'',
+    }),
+    products:this.fb.array([]) 
   });
 
+  createProduct(products:any){
+    return new FormGroup({
+        OrderId:new FormControl(products.OrderId || ''),
+        product_Id:new FormControl(products.product_Id || 0),
+        quantity:new FormControl(products.quantity || 0),
+        Price:new FormControl(products.Price || 0)
+    })
+  }
+
+  get products(){
+    return (this.form.get('products') as FormArray).controls;
+  }
+
+  onAdd(){
+    const control=this.form.get('products') as FormArray;
+    this.productsList.subscribe(response => {
+      this.product1 = response;
+      const id=this.form.get(['selector','product_Id'])?.value;
+      const cunt=this.form.get(['selector','quantity'])?.value; 
+      this.Serves.getService("Product/" + id).subscribe(
+          response => { this.obj = response;
+          this.form.get(['selector','product_Id'])?.setValue(id);
+          this.form.get(['selector','Price'])?.setValue(this.obj.unitPrice*cunt);
+          this.form.get(['selector','OrderId'])?.setValue('4');
+          control.push(this.createProduct(this.form.get('selector')?.value));
+          });
+          this.productList=this.productList.filter(item=>item.code!=id);
+  }); 
+
+  }
+  onRemove(item:any, i:number){
+    const control=this.form.get('products') as FormArray;
+    control.removeAt(i);
+  }
+ 
+ReturnProduct(id:number):Observable<any>{
   
-  onSubmit(event:any){
-    this.submitted.emit(this.form);
-    this.Serves.postService('delivery',this.form.value)
-    this.router.navigate(['/feature/delivery/delivery/list'])
+  // this.product1=this.Serves.getService('Product/'+id).subscribe;
+  return this.Serves.getService('Product/'+id);
+}
+ 
+ async onSubmit(event:any){
+   await this.Serves.postService('Orders',this.form.get('orders')?.value);
+    var id:number;
+    this.Serves.getService('Orders').subscribe(
+      respons=>{
+        this.ordersList=respons;
+        for(let ord of this.ordersList){
+          id=ord.id;
+        }
+       id= id+1;
+       var produc=this.form.get('products')?.value;
+       for(let pro of produc ){
+         pro.OrderId=id;
+         this.Serves.postService('OrderLists',pro);
+       }
+       console.log("products : ",this.form.get('products')?.value);
+       this.router.navigate(['/feature/delivery/delivery/list']);
+      }
+    )
   }
 
+  // get product() {
+  //   return this.form.get('product') as FormArray;
+  // }
 
-  get product() {
-    return this.form.get('product') as FormArray;
-  }
+  // get quantity() {
+  //   return this.form.get('quantity') as FormArray;
+  // }
 
-  get quantity() {
-    return this.form.get('quantity') as FormArray;
-  }
+  // addproduct() {
+  //   this.toggle=true
+  //   this.product.push(new FormControl(''));
+  //   this.quantity.push(new FormControl(''));
+  // }
 
-  addproduct() {
-    this.toggle=true
-    this.product.push(new FormControl(''));
-    this.quantity.push(new FormControl(''));
-  }
-
-  removeproduct(index: number) {
-    this.product.removeAt(index);
-    this.quantity.removeAt(index);
-  }
+  // removeproduct(index: number) {
+  //   this.product.removeAt(index);
+  //   this.quantity.removeAt(index);
+  // }
 }

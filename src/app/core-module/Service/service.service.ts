@@ -1,34 +1,46 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+
+import { Observable } from 'rxjs';
 
 
 
 export const PASSENGER_API='http://localhost:8000/apis/v1/'
-var headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+export const BASE_URL='https://localhost:44344/api/';
+var headers = new HttpHeaders({'Content-Type': 'application/json',
+                                'mode': 'no-cors'});
 
 
 @Injectable()
 export class ServiceService {
+user!: Observable<User>;
 
-  constructor(private http:HttpClient, private router:Router ) { }
+constructor(private http:HttpClient ) { }
 
+getProduct(): Observable<any> {
+  return this.http.get<any>("https://localhost:44344/api/Product",{headers});
+}
+
+loginUser(url:string){
+    return this.http.get<User>(BASE_URL+url);
+  }
+logoutUser(){
+localStorage.removeItem('token');
+localStorage.removeItem('role');
+}
   postService(url:string, event:any){
-    return this.http.post(PASSENGER_API+url, event,{headers}).subscribe(); 
+    return this.http.post(BASE_URL+url, event,{headers}).subscribe(); 
   }
   getService(url:string){
-      return this.http.get(PASSENGER_API+url);
+      return this.http.get(BASE_URL+url);
   }
-  async putService(url:string,event:any ){
-    return this.http.put(PASSENGER_API+url, event,{headers}).subscribe(); 
+  putService(url:string,event:any ){
+    return this.http.put(BASE_URL+url, event,{headers}).subscribe(); 
     
   }
   deleteService(url:string){
-    return this.http.delete(PASSENGER_API+url, {headers}).subscribe();
+    return this.http.delete(BASE_URL+url, {headers}).subscribe();
   }
-
-  logout() :void {    
-    localStorage.setItem('isLoggedIn','false');    
-    localStorage.removeItem('token');    
-    } 
 }

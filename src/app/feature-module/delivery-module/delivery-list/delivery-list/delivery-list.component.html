@@ -1,26 +1,32 @@
-<app-list-view>
+<app-grid-list2 
+[data]="deliveryList"
+(delete)="deleteOrder($event)"
+(detail)="detalilOrder($event)"
+>
+
+</app-grid-list2>
+
+
+<!-- <app-list-view>
     <h1>Delivery List</h1>
     <thead>
+        <th>Ordered By</th>
         <th>Driver</th>
         <th>Start</th>
-        <th>End</th>
-        <th>Product</th>
+        <th>Destination</th>
+        <th>Status</th>
     </thead>
     <tbody>
-        <tr *ngFor="let deli of deliveryList ">
+        <tr *ngFor="let deli of deliveryList | async ">
+            <td>{{deli.orderedBy}}</td>
             <td>{{deli.driver}}</td>
             <td>{{deli.start}}</td>
-            <td>{{deli.end}}</td>
-            <td>
-                <table>
-                    <tr><td>{{deli.product}}</td></tr>
-                    <tr><td>{{deli.quantity}}</td></tr>
-                </table>
-            </td>
+            <td>{{deli.destination}}</td>
+            <td>{{deli.status ? "Delivered" : "Pending"}}</td>
             <td><img src="/assets/img/remove.svg" (click)="deleteDelivery(deli.id)"></td>
             <td><img src="/assets/img/pencil.png" (click)="editDelivery(deli.id)"></td>
         </tr>
     </tbody>
     <button class="btn-success" routerLink="/feature/delivery/delivery/detail">Requst</button>
     <a>back to List</a>
-</app-list-view>
+</app-list-view> -->

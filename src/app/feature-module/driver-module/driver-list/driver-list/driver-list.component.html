@@ -2,22 +2,22 @@
     <div *ngIf="DriverList.length">
       <h3>Driver List</h3>
         <table class="table table-hover">
-         <thead>
-            <th scope="col">Driver Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Age</th>
-          </thead>
-          <tbody>
-            <tr *ngFor="let driver of DriverList"> 
-              <td>{{driver.name}}</td>
-              <td>{{driver.email}}</td>
-              <td>{{driver.phone}}</td>
-              <td>{{driver.age}}</td>
-              <td><img src="/assets/img/remove.svg" (click)="deleteProduct(driver.id)"></td>
-              <td><img src="/assets/img/pencil.png" (click)="editProduct(driver.id)"></td>
-            </tr>
-          </tbody>
+           <thead>
+              <th scope="col">Driver Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Age</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let driver of DriverList"> 
+                  <td>{{driver.name}}</td>
+                  <td>{{driver.email}}</td>
+                  <td>{{driver.phone}}</td>
+                  <td>{{driver.age}}</td>
+                  <td><img src="/assets/img/remove.svg" (click)="deleteProduct(driver.id)"></td>
+                  <td><img src="/assets/img/pencil.png" (click)="editProduct(driver.id)"></td>
+              </tr>
+            </tbody>
         </table>
     </div>
     <div *ngIf="!DriverList.length">

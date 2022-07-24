@@ -20,7 +20,7 @@ export const ROUTES:Routes=[
     RouterModule.forChild(ROUTES),
     AuthSharedModule,
     HttpClientModule,
-    CoreModuleModule.forRoot()
+    
   ],
   exports:[
     LoginComponent

@@ -6,11 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModuleModule } from 'src/app/core-module/core-module.module';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
-import {TextBoxModule} from '@syncfusion/ej2-angular-inputs';
+import {NumericTextBoxModule, TextBoxModule} from '@syncfusion/ej2-angular-inputs';
+import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 
 
 export const ROUTES:Routes=[
-  {path:'', component:DeliveryDetailComponent}
+  {path:'', component:DeliveryDetailComponent},
+  {path:':id', component:DeliveryDetailComponent}
 
 ]
 
@@ -23,6 +25,8 @@ export const ROUTES:Routes=[
     ReactiveFormsModule,
     DropDownListModule,
     TextBoxModule,
+    NumericTextBoxModule,
+    ButtonModule,
     HttpClientModule,
     CoreModuleModule.forRoot(),
     RouterModule.forChild(ROUTES),

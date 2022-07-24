@@ -1,0 +1,85 @@
+.e-grid {
+    background-color: bisque;
+    font-family: 'Times New Roman', Times, serif;
+}
+.e-grid .e-gridheader {
+    border-bottom:2px solid black;
+    /* padding: 0px 0px 0px 0px;; */
+    /* margin: 0px 0px 0px 0px; */
+}
+.e-grid .e-headercell {
+    color: darkblue;
+    padding: 0px 0px 0px 0px;;
+    margin: 0px 0px 0px 0px;
+ }
+ .e-grid .e-headercelldiv {
+    font-size: 34px;
+    padding: 0px 0px 0px 0px;;
+    margin: 0px 0px 0px 0px;
+ }
+ .e-grid .e-toolbar-items {
+    background-color: #db0b62;
+}
+.e-grid .e-toolbar .e-btn {
+    background-color: #2b8ce7;
+}
+
+
+.e-grid .e-editedrow table,
+.e-grid .e-addedrow table {
+    background-color: #deecf9;
+}
+
+.e-grid .e-gridform .e-rowcell .e-input-group .e-input.e-field {
+    font-family: cursive;
+}
+
+
+.e-edit-dialog .e-dlg-header-content {
+    background-color: #deecf9;
+}
+
+
+.e-gridform .e-rowcell .e-float-input .e-field {
+    font-family: cursive;
+}
+
+
+.e-grid .e-summaryrow .e-summarycell {
+    background-color: #deecf9;
+}
+
+
+.e-grid .e-gridfooter {
+    background-color: #deecf9;
+}
+
+.display{
+    text-align: center;
+    margin: 10px 2%;
+    /* border: solid 1px royalblue; */
+}
+.list{
+    margin: 2%;
+    width: 90;
+}
+h3{
+    font-size: 22px;
+    color: indigo;
+}
+button{
+    margin-left: 75%;
+    margin-right: 10%;
+    text-align: right;
+    margin-bottom: 3%;
+}
+
+table{
+    margin: 3%;
+    width: 80%;
+}
+
+td img{
+    width: 35px;
+    height: 35px;
+}

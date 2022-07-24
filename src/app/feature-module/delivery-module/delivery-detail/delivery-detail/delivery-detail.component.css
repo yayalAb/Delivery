@@ -1,5 +1,5 @@
 .deliveryForm{
-    border: solid 1px rgb(47, 69, 168);
+    border: solid 0.5px rgb(26, 26, 27);
     margin: 10px 10%;
 }
 .Inputs{
@@ -26,4 +26,67 @@ a{
 }
 .quantity .product{
     margin-right: 3%;
+}
+.fromarray{
+    border-top: solid 1px black;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+.RemoveButton{
+    margin-left: 5%;
+    margin-right: 3%;
+    margin-top: 1%;
+    height: 40px;
+}
+
+.AddButton{
+    margin-left: 5%;
+    margin-top: 2%;
+    height: 40px;
+}
+.optionClass{
+    height: 56px;
+    width: 40%;
+    margin-right: 3%;
+}
+.inputclass{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 15px;
+}
+.arrayList{
+    display: flex;
+}
+.selectorClass{
+    display: flex; 
+}
+.controlSelect{
+    margin-right: 3%;
+}
+.selectorClass{
+    margin: 3%;
+}
+p{
+    padding-top: 2%;
+    margin: 3px;
+}
+.carrancy{
+    margin-left: 5%;
+}
+.textboxes{
+   margin-bottom: 15px;
+}
+.quantity{
+    width: 40%;
+}
+a{
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+.alink{
+    margin-left: 80%;
+    margin-top: 10px;
+    margin-bottom: 2%;
 }

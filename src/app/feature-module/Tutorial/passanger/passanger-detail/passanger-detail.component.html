@@ -1,0 +1,19 @@
+<p>passanger-detail works!</p>
+<div>
+    {{detail | json}}
+</div>
+
+<div *ngIf="editing">
+    <input type="text" [value]="detail.fullname"
+    (input)="OnChange(name.value)" #name> 
+</div>
+<div *ngIf="!editing">
+    {{detail.fullname}}
+</div>
+<button class="btn btn-warning" (click)="toggleEdit()" style="margin-right:10px;">
+    {{editing ? 'Done':'Edit'}}
+
+</button>
+<button class="btn btn-danger" (click)="onRemove()">
+Remove
+</button>

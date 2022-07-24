@@ -8,8 +8,7 @@ import { CoreModuleModule } from 'src/app/core-module/core-module.module';
 import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
 
 export const ROUTES:Routes=[
-  {path:'', component:DeliveryListComponent, canActivate : [AuthGuard]}
-
+  {path:'', component:DeliveryListComponent, canActivate : [AuthGuard]},
 ]
 
 
