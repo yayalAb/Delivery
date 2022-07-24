@@ -21,13 +21,15 @@ export class MainComponent implements OnInit {
   public dockSize:string ="44px";
   public mediaQuery: string = ('(min-width: 600px)');
   public target: string = '.main-content';
-  id:any="";
   public data!: Object[];
   public authUser!:Object[];
   public authUserCust!:Object[];
   user!:Observable<any>;
   @Input()
   role:any;
+
+  @Input()
+  id:any;
  public treeSettings={loadOnDemand:true};
   constructor(private router:Router,
     private serv:ServiceService,
@@ -35,10 +37,6 @@ export class MainComponent implements OnInit {
   ngOnInit(){ 
     this.id=localStorage.getItem('token');
     this.role=localStorage.getItem('role');
-    console.log("Role : ",this.role);
-    console.log("app component Ng on Init : ",this.serv.user,this.id );
-    this.user=this.serv.user;
-
   }
 
 
@@ -49,8 +47,9 @@ export class MainComponent implements OnInit {
    dataSource(){
         this.data= [
             {
-                nodeId: '01', nodeText:  'User Accounts', iconCss: 'icon-th icon', url:'/feature/vehicle/vehicle/list'
+                nodeId: '01', nodeText:  'User Accounts', iconCss: 'icon-th icon', url:'/feature/account'
               },
+
              {
                 nodeId: '02', nodeText: 'Products', iconCss: 'icon-microchip icon', 
                    nodeChild: [
@@ -61,28 +60,29 @@ export class MainComponent implements OnInit {
                     { nodeId: '02-05', nodeText: 'Near to Expire Products', iconCss: 'icon-th icon',url:'/feature/product/product/list/NearExpire' },
                     ]
              },
-             {
-                nodeId: '03', nodeText: 'Vehicle', iconCss: 'icon-microchip icon', 
-                   nodeChild: [
-                    { nodeId: '03-01', nodeText: 'All Products', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
-                    { nodeId: '03-02', nodeText: 'Expaireded Products', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
-                    { nodeId: '03-03', nodeText: 'Finshed Products', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
-                    { nodeId: '03-04', nodeText: 'Near to Finsh Product', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
-                    { nodeId: '03-05', nodeText: 'Near to Expaired Product', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
-                    ]
-             },
+            //  {
+            //     nodeId: '03', nodeText: 'Vehicle', iconCss: 'icon-microchip icon', 
+            //        nodeChild: [
+            //         { nodeId: '03-01', nodeText: 'All Products', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
+            //         { nodeId: '03-02', nodeText: 'Expaireded Products', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
+            //         { nodeId: '03-03', nodeText: 'Finshed Products', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
+            //         { nodeId: '03-04', nodeText: 'Near to Finsh Product', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
+            //         { nodeId: '03-05', nodeText: 'Near to Expaired Product', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
+            //         ]
+            //  },
+
             {
-            nodeId: '02', nodeText:  'Vehicle', iconCss: 'icon-th icon', url:'/feature/vehicle/vehicle/list'
+            nodeId: '04', nodeText:  'Vehicle', iconCss: 'icon-th icon', url:'/feature/vehicle/vehicle/list'
             },
               
         ];
 
         this.authUser =[
             {
-                nodeId: '03', nodeText:  'Drivers', iconCss: '.e-font icon', url:'/feature/driver/driver/list'
+                nodeId: '05', nodeText:  'Drivers', iconCss: '.e-font icon', url:'/feature/driver/driver/list'
             },
             {
-                nodeId: '04', nodeText:  'Order', iconCss: '.e-font icon', url:'/feature/delivery/delivery/list'
+                nodeId: '06', nodeText:  'Order', iconCss: '.e-font icon', url:'/feature/delivery/delivery/list'
             } 
         ];
 
@@ -90,10 +90,10 @@ export class MainComponent implements OnInit {
 
         this.authUserCust =[
             {
-                nodeId: '03', nodeText:  'Drivers cust', iconCss: '.e-font icon', url:'/feature/driver/driver/list'
+                nodeId: '07', nodeText:  'Drivers cust', iconCss: '.e-font icon', url:'/feature/driver/driver/list'
             },
             {
-                nodeId: '04', nodeText:  'Order Cast', iconCss: '.e-font icon', url:'/feature/delivery/delivery/list'
+                nodeId: '08', nodeText:  'Order Cast', iconCss: '.e-font icon', url:'/feature/delivery/delivery/list'
             } 
         ];
             // if(this.rout.isLoggedIn()){

@@ -5,16 +5,16 @@
         
           <div class="Inputs">
             <div class='textboxes'>
-                <ejs-textbox  placeholder="Vehicle Owner" floatLabelType="Always" formControlName="owner" [ngModel]="data.owner"></ejs-textbox>
+                <ejs-textbox class="form-control" placeholder="Vehicle Owner" floatLabelType="Always" formControlName="vechileOwner" [ngModel]="data?.vechileOwner"></ejs-textbox>
               </div>
             <div class='textboxes'>
-                <ejs-textbox type="text" placeholder="Driver" name="driver" floatLabelType="Always" formControlName="driver" [ngModel]="data.driver"></ejs-textbox>
+                <ejs-textbox class="form-control"  type="text" placeholder="Driver" floatLabelType="Always" formControlName="vechileDriver" [ngModel]="data?.vechileDriver"></ejs-textbox>
               </div>
               <div class='textboxes'>
-                <ejs-textbox type="text" placeholder="type" name="type" floatLabelType="Always" formControlName="type" [ngModel]="data.driver"></ejs-textbox>
+                <ejs-textbox class="form-control"  type="text" placeholder="type"  floatLabelType="Always" formControlName="vechileType" [ngModel]="data?.vechileType"></ejs-textbox>
               </div>
             <div class='textboxes'>
-              <ejs-maskedtextbox mask='000-000-0000' formControlName="model" [ngModel]="data.model" ></ejs-maskedtextbox>
+              <ejs-maskedtextbox class="form-control"  mask='000-000-0000' formControlName="vechileModel" [ngModel]="data?.vechileModel" ></ejs-maskedtextbox>
              </div> 
 
           </div>
@@ -22,7 +22,7 @@
             <div>
               <button class="btn-success"> {{ vehicle ? 'Update' : 'Save' }} </button>
             </div>
-            <a routerLink="/feature/vehicle/vehicle/list">back to driver list</a>
+            <a routerLink="/feature/vehicle/vehicle/list">back to list</a>
           </div>
       </form>
     </div>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/guard.guard';
+import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 
 
 export const ROUTES:Routes=[
@@ -12,11 +13,14 @@ export const ROUTES:Routes=[
   ]
    }
 ]
+
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    
+
   ]
 })
 export class AuthModuleModule { }

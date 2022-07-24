@@ -24,7 +24,7 @@ export class VehicleDetailComponent implements OnInit {
       this.vehicle=params.get('id')
     })
     if(this.vehicle){
-      this.data=this.Serves.getService('vehicle/'+this.vehicle).subscribe(response => {
+      this.data=this.Serves.getService('vehicles/'+this.vehicle).subscribe(response => {
         this.data = response;
     });
     }
@@ -35,12 +35,11 @@ export class VehicleDetailComponent implements OnInit {
   
 
   form = this.fb.group({
-    owner: ['', Validators.required],
-    driver: ['', Validators.required],
-    type: ['', Validators.required],
-    model: ['', Validators.required]
+    vechileOwner: ['', Validators.required],
+    vechileDriver: ['', Validators.required],
+    vechileType: ['', Validators.required],
+    vechileModel: ['', Validators.required]
   });
-
 
 
   onSubmit(event:any) {
@@ -48,10 +47,10 @@ export class VehicleDetailComponent implements OnInit {
       this.submitted.emit(this.form);
       console.log("Onsubmit Valid", this.form.value)
       if(this.vehicle){
-        this.Serves.putService('vehicle/'+this.vehicle,this.form.value)
+        this.Serves.putService('vehicles/'+this.vehicle,this.form.value)
         console.log("Updating")
       }else{
-        this.Serves.postService('vehicle',this.form.value)
+        this.Serves.postService('vehicles',this.form.value)
         console.log("Creating")
       }
       

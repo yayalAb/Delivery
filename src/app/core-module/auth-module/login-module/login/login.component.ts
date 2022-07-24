@@ -12,41 +12,40 @@ import { ServiceService } from 'src/app/core-module/Service/service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   error:boolean=false
   massage!:String;
   user!:any;
   nuser!:Observable<any>;
-  id="";
+  id!:string;
   log:boolean=false;
  constructor( private route:Router,
   private authService : ServiceService) { }
 
 
  ngOnInit() {
-  this.id!=localStorage.getItem('token');
-
   console.log("log on init : ",localStorage.getItem('isLoggedIn'),localStorage.getItem('token'));
-  if(this.log){
-    console.log("log on init True");
+  if(localStorage.getItem('token')?.toString().length){
+    console.log("log on init True1");
     this.route.navigate(['/core/dash']);  
   }
-  
  }
  @Output()
  login = new EventEmitter<any>();
- async loginUser(event: FormGroup) {
+
+
+
+ async loginUser(event:FormGroup) {
      try{
        this.authService.getService("Auths/" + event.value.email).subscribe(
           response => { this.user = response;
-            console.log("event.value.email : ",event.value.email);
             if(event.value.email===this.user.email&& event.value.password===this.user.password){
-                 console.log("Logined : ", this.user.userType);
+                 
                  localStorage.setItem('isLoggedIn', "true");  
                  localStorage.setItem('role', this.user.userType); 
                  localStorage.setItem('token', event.value.email); 
                  this.id=event.value.email;
                  this.login.emit();
+                 window.location.reload();
                  this.authService.user= this.authService.loginUser("auth/" + event.value.email);
                  this.route.navigate(['/core/dash']);  
               }
@@ -55,7 +54,8 @@ export class LoginComponent implements OnInit {
                 this.massage="Wrong Password Or Email";
                 console.log("error on login")
               }
-          },(error:any)=>{
+          },
+          (error:any)=>{
             this.error=true;
             this.massage="Wrong Email Address";
           }

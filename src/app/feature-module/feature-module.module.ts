@@ -13,7 +13,8 @@ export const ROUTES:Routes=[
      {path:'tutorial', loadChildren:()=>import('./Tutorial/tutorial/tutorial.module').then(x=>x.TutorialModule)},
      {path:'driver', loadChildren:()=>import('./driver-module/driver-module.module').then(x=>x.DriverModuleModule),canActivate : [AuthGuard]},
      {path:'vehicle', loadChildren:()=>import('./vehicle-module/vehicle-module.module').then(x=>x.VehicleModuleModule),canActivate : [AuthGuard]},
-     {path:'delivery', loadChildren:()=>import('./delivery-module/delivery-module.module').then(x=>x.DeliveryModuleModule),canActivate : [AuthGuard]}
+     {path:'delivery', loadChildren:()=>import('./delivery-module/delivery-module.module').then(x=>x.DeliveryModuleModule),canActivate : [AuthGuard]},
+     {path:'account', loadChildren:()=>import('./user-account/user-account.module').then(x=>x.UserAccountModule),canActivate : [AuthGuard]}
     ]
 
   }

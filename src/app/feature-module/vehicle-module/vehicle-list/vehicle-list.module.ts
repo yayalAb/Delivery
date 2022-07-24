@@ -4,6 +4,7 @@ import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModuleModule } from 'src/app/core-module/core-module.module';
+import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
 
 export const ROUTES:Routes=[
   {path:'', component:VehicleListComponent}
@@ -19,7 +20,8 @@ export const ROUTES:Routes=[
     CommonModule,
     HttpClientModule,
     CoreModuleModule.forRoot(),
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    SharedModuleModule
   ]
 })
 export class VehicleListModule { }

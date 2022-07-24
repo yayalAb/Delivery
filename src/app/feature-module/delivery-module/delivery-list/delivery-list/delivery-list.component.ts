@@ -12,9 +12,29 @@ export class DeliveryListComponent implements OnInit {
 
   deliveryList!:Observable<any>;
   constructor(private deliveryService:ServiceService,private router:Router ) { }
+list=[{
+  name:'orderedBy',
+  text:'Ordered By'
+},
+{
+  name:'driverId',
+  text:'Driver'
+},
+{
+  name:'start',
+  text:'Start'
+},
+{
+  name:'destination',
+  text:'Destination'
+},
+{
+  name:'status',
+  text:'Status'
+}]
 
-
-
+link="/feature/delivery/delivery/detail";
+link_name="New Order";
   async ngOnInit(){
     this.deliveryList = this.deliveryService.getService('Orders');
 }

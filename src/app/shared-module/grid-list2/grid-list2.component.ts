@@ -13,26 +13,34 @@ export class GridList2Component implements OnInit {
 
   public pageSettings!: PageSettingsModel;  
   ngOnInit(): void {
-    // this.data= this.service.getService('Orders');
       this.pageSettings = { pageSize: 6 };
   }
+  
+  @Output()
+  deleteEvent  = new EventEmitter<any>();
 
   @Output()
-  delete  = new EventEmitter<any>();
-
-  @Output()
-  detail  = new EventEmitter<any>();
+  detailEvent  = new EventEmitter<any>();
 
   @Input()
   data!:any;
 
+  @Input()
+  list!:any;
 
-  deleteOrder(id:any){
-    this.delete.emit(id);
+  @Input()
+  link!:string;
+
+  @Input()
+  link_name!:string
+
+
+  delete(id:any){
+    this.deleteEvent.emit(id);
   }
 
-  detailOrder(id:any){
-    this.detail.emit(id);
+  detail(id:any){
+    this.detailEvent.emit(id);
   }
 
 }

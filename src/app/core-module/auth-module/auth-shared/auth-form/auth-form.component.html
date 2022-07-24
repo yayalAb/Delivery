@@ -5,18 +5,29 @@
         <ng-content select="h1" class="title"></ng-content>
           <div class="Inputs">
             <label>Email </label>
-            <div>
-              <input class="form-control"type="email" placeholder="Email address" formControlName="email">
+            <!-- <div>
+              <input class="form-control" type="email" placeholder="Email address" formControlName="email">
+            </div> -->
+
+            <div class='textboxes'>
+              <ejs-textbox class="form-control"  type="email"  placeholder="Email address" floatLabelType="Always"  formControlName="email"></ejs-textbox>
             </div>
             <div *ngIf="isSignUp">
               <label>User Type </label>
-              <div>
-                <input class="form-control" type="text" placeholder="User type" formControlName="UserType">
-              </div>
+              <!-- <div>
+                <input class="form-control" type="text" placeholder="User type" formControlName="userType">
+              </div> -->
+
+              <div class='textboxes'>
+                <ejs-dropdownlist id='ddlelement' class="form-control"  [dataSource]='userRole' [fields]="role" formControlName="userType"  placeholder='Select Role' ></ejs-dropdownlist>
+               </div> 
             </div>
             <label>Password</label>
-            <div>
+            <!-- <div>
               <input class="form-control" type="password" placeholder="Enter password" formControlName="password">
+            </div> -->
+            <div class='textboxes'>
+              <ejs-textbox class="form-control"  type="password"  placeholder="Enter password" floatLabelType="Always"  formControlName="password"></ejs-textbox>
             </div>
           </div>
           

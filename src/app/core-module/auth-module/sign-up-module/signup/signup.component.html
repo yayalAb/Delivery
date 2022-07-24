@@ -1,13 +1,10 @@
-<app-auth-form (submitted)="SignUpUser($event)" [isSignUp]="signUp">
-    <h1 class="title">SignUp</h1>
-
-    <a routerLink="/core/auth/login">Already have an account?</a>
-
-
-    <button type="button" class="btn btn-outline-primary">
-      Create account
-     </button>
-    <div class="error" *ngIf="error">
-      {{ error }}
-    </div>
+  <app-auth-form (submitted)="SignUpUser($event)" [isSignUp]="signUp">
+        <h1 class="title">SignUp</h1>
+          <a routerLink="/core/login/auth/login">Already have an account?</a>
+        <button type="submit" class="btn btn-outline-primary">
+          Create account
+        </button>
+        <div class="error" *ngIf="error">
+          {{ error }}
+        </div>
   </app-auth-form>

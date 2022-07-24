@@ -4,6 +4,7 @@ import { DriverListComponent } from './driver-list/driver-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CoreModuleModule } from 'src/app/core-module/core-module.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
 
 export const ROUTES:Routes=[
   {path:'', component:DriverListComponent }
@@ -17,7 +18,8 @@ export const ROUTES:Routes=[
     CommonModule,
     HttpClientModule,
     CoreModuleModule.forRoot(),
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    SharedModuleModule
   ]
 })
 export class DriverListModule { }

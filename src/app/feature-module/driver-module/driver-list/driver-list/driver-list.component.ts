@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ServiceService } from 'src/app/core-module/Service/service.service';
 
 @Component({
@@ -9,27 +10,42 @@ import { ServiceService } from 'src/app/core-module/Service/service.service';
   styleUrls: ['./driver-list.component.css']
 })
 export class DriverListComponent implements OnInit {
-  DriverList:any=''
+  DriverList!:Observable<any>;
   constructor(private driverService:ServiceService,private router:Router ) { }
 
+  list=[{
+    name:'name',
+    text:'Full Name'
+  },
+  {
+    name:'email',
+    text:'Email'
+  },
+  {
+    name:'phone',
+    text:'Phone'
+  },
+  {
+    name:'age',
+    text:'Age'
+  }];
 
-
-  ngOnInit(): void {
-    this.driverService.getService('driver').subscribe(response => {
-      this.DriverList = response;
-  });
+ngOnInit(): void {
+      this.DriverList = this.driverService.getService('Drivers');
 }
-  @Output()
-  deleted = new EventEmitter<FormGroup>();
 
-  editProduct(id:any){
-    this.router.navigate(['/feature/driver/driver/detail/'+id])
-  }
-  deleteProduct(id:number){
-   // this.deleted.emit();
-    console.log("deleted", id)
-    this.driverService.deleteService('driver/'+id)
-    this.router.navigate(['/feature/driver/driver/list'])
+link="/feature/driver/driver/detail";
+link_name="New Driver";
 
-  }
+
+
+deleteDriver(event:any){
+  this.driverService.deleteService('Drivers/'+event);
+  this.DriverList = this.driverService.getService('Drivers');
+}
+detalilDriver(event:any){
+ this.router.navigate(['/feature/driver/driver/detail/'+event]);
+  console.log("detail emited");
+
+}
 }

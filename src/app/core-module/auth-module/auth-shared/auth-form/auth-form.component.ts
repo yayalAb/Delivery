@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+export interface List{
+          value:string;
+          name:string;
+        }
 @Component({
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
@@ -11,17 +14,29 @@ export class AuthFormComponent {
   
  @Input() isSignUp=false
  
+userRole:List[]=[{
+            value:"Admin",
+            name:"Admin"
+          },
+          {
+            value:"Customer",
+            name:"Customer"
+          },
+          {
+            value:"Driver",
+            name:"Driver"
+          }];
 
-
+ public role:Object={text:'name', value:'value'};
  @Output()
  submitted = new EventEmitter<FormGroup>();
 
  form = this.fb.group({
-   email: ['', Validators.email],
-   password: ['', Validators.required],
-   UserType: ['']
- });
-
+        email: ['', Validators.email],
+        password: ['', Validators.required],
+        userType: ['']
+      });
+     
  constructor(
    private fb: FormBuilder
  ) {}

@@ -2,8 +2,6 @@ import { OnInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthGuard } from './core-module/auth-module/guard/guard.guard';
-import { ServiceService } from './core-module/Service/service.service';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
@@ -14,6 +12,7 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit{
   title = 'Delivery System';
   id?:any="";
+  notDisplay:boolean=false;
   user!:Observable<any>;
   role:any="";
 
@@ -35,6 +34,6 @@ export class AppComponent implements OnInit{
   onlogin(){
     this.id=localStorage.getItem('token');
     this.role=localStorage.getItem('role');
-    // console.log("login Emited app.com");
+    console.log("login Emited app.com");
   }
 }

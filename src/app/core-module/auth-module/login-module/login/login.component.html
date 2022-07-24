@@ -1,13 +1,14 @@
 <div>
-    <app-auth-form (submitted)="loginUser($event)">
+    <app-auth-form (submitted)="loginUser($event)" >
       <h1 class="title">Login</h1>
+        <div class="error" *ngIf="error">
+            {{massage}}
+        </div>
 
-      <div class="error" *ngIf="error">
-          {{massage}}
-      </div>
-      <a routerLink="/core/auth/signup">Not registered?</a>
-      <button type="submit" class="btn btn-outline-primary">
-        Login
+      <a routerLink="/core/login/auth/signup">Not registered?</a>
+
+      <button type="submit"   class="btn btn-outline-primary">
+       Login
       </button>
     </app-auth-form>
   </div>

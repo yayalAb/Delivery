@@ -14,15 +14,18 @@
 }
 label{
     text-align: left;
+    margin-top: 5%;
 } 
 
 input,button{
-    text-align: center;
+    text-align: left;
     margin-bottom: 10px;
 }
 .Inputs{
     display: block;
-    width: max-content;
+    margin-left: 5%;
+    margin-right: 8%;
+    /* width: max-content; */
     position: relative;
     left: 50%;
     transform: translateX(-50%);

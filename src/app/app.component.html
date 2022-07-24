@@ -4,10 +4,12 @@
 </app-header>
 
 
-<app-login (login)="onlogin()"  *ngIf="!id.length"></app-login>
+<div style="display: none;">
+    <app-login (login)="onlogin()"></app-login>
+</div>
 
 
-<app-main *ngIf="id.length" [role]="role">
+<app-main [id]="id" [role]="role">
     <router-outlet></router-outlet> 
 </app-main>
 <br>

@@ -1,9 +1,11 @@
 <app-grid-list2 
+[list]="list"
 [data]="deliveryList"
-(delete)="deleteOrder($event)"
-(detail)="detalilOrder($event)"
+(deleteEvent)="deleteOrder($event)"
+(detailEvent)="detalilOrder($event)"
+[link]="link"
+[link_name]="link_name"
 >
-
 </app-grid-list2>
 
 

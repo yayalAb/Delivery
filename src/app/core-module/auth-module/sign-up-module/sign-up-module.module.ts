@@ -16,7 +16,8 @@ export const ROUTES:Routes=[
   imports: [
     CommonModule,
     AuthSharedModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    
   ]
 })
 export class SignUpModuleModule { }
