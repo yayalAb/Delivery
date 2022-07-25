@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ServiceService } from 'src/app/core-module/Service/service.service';
 
 @Component({
-  selector: 'app-delivery-list',
-  templateUrl: './delivery-list.component.html',
-  styleUrls: ['./delivery-list.component.css']
+  selector: 'app-delivered-orders',
+  templateUrl: './delivered-orders.component.html',
+  styleUrls: ['./delivered-orders.component.css']
 })
-export class DeliveryListComponent implements OnInit {
+export class DeliveredOrdersComponent implements OnInit {
 
   deliveryList!:Observable<any>;
   constructor(private deliveryService:ServiceService,private router:Router ) { }
@@ -35,16 +35,16 @@ list=[{
 
 link="/feature/delivery/delivery/detail";
 link_name="New Order";
+title:string="Delivered Orders List";
 delev:any;
-title:string="Orders List";
   async ngOnInit(){
-    this.deliveryList = this.deliveryService.getService('Orders');
+    this.deliveryList = this.deliveryService.getService('Orders/Delivered');
 }
 
 
 deleteOrder(event:any){
   this.deliveryService.deleteService('Orders/'+event);
-  this.deliveryList = this.deliveryService.getService('Orders');
+  this.ngOnInit();
 }
 detalilOrder(event:any){
   this.router.navigate(['/feature/delivery/delivery/detail/'+event]);

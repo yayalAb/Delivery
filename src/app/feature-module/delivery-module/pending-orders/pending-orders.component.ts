@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ServiceService } from 'src/app/core-module/Service/service.service';
 
 @Component({
-  selector: 'app-delivery-list',
-  templateUrl: './delivery-list.component.html',
-  styleUrls: ['./delivery-list.component.css']
+  selector: 'app-pending-orders',
+  templateUrl: './pending-orders.component.html',
+  styleUrls: ['./pending-orders.component.css']
 })
-export class DeliveryListComponent implements OnInit {
+export class PendingOrdersComponent implements OnInit {
 
   deliveryList!:Observable<any>;
   constructor(private deliveryService:ServiceService,private router:Router ) { }
@@ -35,16 +35,17 @@ list=[{
 
 link="/feature/delivery/delivery/detail";
 link_name="New Order";
+title:string="Pending Order List";
 delev:any;
-title:string="Orders List";
+order:boolean=true;
   async ngOnInit(){
-    this.deliveryList = this.deliveryService.getService('Orders');
+    this.deliveryList = this.deliveryService.getService('Orders/Pending');
 }
 
 
 deleteOrder(event:any){
   this.deliveryService.deleteService('Orders/'+event);
-  this.deliveryList = this.deliveryService.getService('Orders');
+  this.ngOnInit();
 }
 detalilOrder(event:any){
   this.router.navigate(['/feature/delivery/delivery/detail/'+event]);
@@ -52,7 +53,7 @@ detalilOrder(event:any){
 
 }
 
-deliveredEvent(event:any){
+async  deliveredEvent(event:any){
   console.log("deliveredEvent",event);
   this.deliveryService.getService('Orders/'+event).subscribe(
     respons=>{
@@ -60,7 +61,7 @@ deliveredEvent(event:any){
       this.delev.status=true;
       console.log("var :",this.delev)
       this.deliveryService.putService("Orders/"+this.delev.id,this.delev);
-      this.ngOnInit();
+      this.deliveryList = this.deliveryService.getService('Orders/Pending');
     }
   );
 

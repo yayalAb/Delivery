@@ -36,7 +36,7 @@ ngOnInit(): void {
 
 link="/feature/driver/driver/detail";
 link_name="New Driver";
-
+title:string="Driver List";
 
 
 deleteDriver(event:any){

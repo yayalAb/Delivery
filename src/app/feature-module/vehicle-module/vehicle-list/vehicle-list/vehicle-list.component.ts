@@ -36,6 +36,7 @@ ngOnInit(): void {
 
 link="/feature/vehicle/vehicle/detail";
 link_name="New Vehicle";
+title:string="Vehicle List";
 
 
 

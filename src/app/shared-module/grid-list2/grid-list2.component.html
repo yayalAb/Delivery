@@ -1,10 +1,13 @@
+<div class="container-fluid">
 <div *ngIf="!(data|async)">
     <h3>Loading ... ... </h3>
 </div>
 <div *ngIf="data|async as data">
-    <div class="link">
-   <!-- <a>back to List</a> -->
-    <button class="btn-success" routerLink={{link}}>{{link_name}}</button>
+    <div class="header">
+        <h3>{{title}}</h3>
+        <div class="link">
+         <button class="btn-success" routerLink={{link}}>{{link_name}}</button>
+       </div>
     </div>
         <ejs-grid [dataSource]='data' [allowPaging]="true" [allowSorting]="true" [pageSettings]='pageSettings'>
             <e-columns>
@@ -17,6 +20,8 @@
                 <e-column field='viewdetail' headerText='Action' textAlign='Right' width=20%> 
                     <ng-template #template let-data>
                         <div>
+                            
+                            <button *ngIf="order" class="btn-success" (click)="delivered(data.id)">Delivered</button>
                             <button class="btn-danger" (click)="delete(data.id)">Delete</button>
                             <button class="btn-info"  (click)="detail(data.id)">Detail</button>
                         </div>
@@ -25,5 +30,4 @@
             </e-columns>
         </ejs-grid>
 </div>
-
-
+</div>

@@ -60,32 +60,25 @@ export class MainComponent implements OnInit {
                     { nodeId: '02-05', nodeText: 'Near to Expire Products', iconCss: 'icon-th icon',url:'/feature/product/product/list/NearExpire' },
                     ]
              },
-            //  {
-            //     nodeId: '03', nodeText: 'Vehicle', iconCss: 'icon-microchip icon', 
-            //        nodeChild: [
-            //         { nodeId: '03-01', nodeText: 'All Products', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
-            //         { nodeId: '03-02', nodeText: 'Expaireded Products', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
-            //         { nodeId: '03-03', nodeText: 'Finshed Products', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
-            //         { nodeId: '03-04', nodeText: 'Near to Finsh Product', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
-            //         { nodeId: '03-05', nodeText: 'Near to Expaired Product', iconCss: 'icon-th icon',url:'/feature/product/product/list' },
-            //         ]
-            //  },
 
             {
             nodeId: '04', nodeText:  'Vehicle', iconCss: 'icon-microchip icon', url:'/feature/vehicle/vehicle/list'
             },
-              
+            {
+             nodeId: '06', nodeText:  'Order', iconCss: 'icon-microchip icon', 
+                nodeChild: [
+                { nodeId: '06-01', nodeText: 'All Orders', iconCss: 'icon-th icon',url:'/feature/delivery/delivery/list'},
+                { nodeId: '06-02', nodeText: 'Pending Orders', iconCss: 'icon-th icon',url:'/feature/delivery/delivery/pending' },
+                { nodeId: '06-03', nodeText: 'delivered Orders', iconCss: 'icon-th icon',url:'/feature/delivery/delivery/delivered' },
+                ]
+             },
         ];
 
         this.authUser =[
             {
                 nodeId: '05', nodeText:  'Drivers', iconCss: 'icon-microchip icon', url:'/feature/driver/driver/list'
             },
-            {
-                nodeId: '06', nodeText:  'Order', iconCss: 'icon-microchip icon', url:'/feature/delivery/delivery/list'
-            } 
         ];
-
 
 
         this.authUserCust =[

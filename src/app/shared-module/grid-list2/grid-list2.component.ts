@@ -22,6 +22,11 @@ export class GridList2Component implements OnInit {
   @Output()
   detailEvent  = new EventEmitter<any>();
 
+  @Output()
+  deliveredEvent  = new EventEmitter<any>();
+  @Input()
+  title!:string;
+ 
   @Input()
   data!:any;
 
@@ -34,6 +39,8 @@ export class GridList2Component implements OnInit {
   @Input()
   link_name!:string
 
+  @Input()
+  order:boolean=false;
 
   delete(id:any){
     this.deleteEvent.emit(id);
@@ -43,4 +50,7 @@ export class GridList2Component implements OnInit {
     this.detailEvent.emit(id);
   }
 
+  delivered(id:any){
+    this.deliveredEvent.emit(id);
+  }
 }
