@@ -48,7 +48,6 @@ export class DriverComponent implements OnInit {
     }
   }
 
-
   onSubmit(event:any) {
       this.submitted.emit(this.form);
       if(this.driver && this.form.valid){

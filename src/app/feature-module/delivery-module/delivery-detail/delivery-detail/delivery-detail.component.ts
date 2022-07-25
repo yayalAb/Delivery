@@ -27,6 +27,7 @@ export class DeliveryDetailComponent implements OnInit {
      name:""
   };
   obj:any;
+  editng:boolean=false;
   sinpro  :Product[]=[];
   total :number=0;
   toggle:boolean=false
@@ -47,7 +48,8 @@ export class DeliveryDetailComponent implements OnInit {
     })
     if(this.orderId){
       this.Serves.getService('Orders/'+this.orderId).subscribe(response => {
-        this.data = response;  
+        this.data = response; 
+        this.editng=true; 
     });
     this.Serves.getService('OrderLists').subscribe(response => {
       this.orderedProductList = response;  
@@ -137,6 +139,17 @@ public LocalWaterMark:string='Select Product';
   }
   onRemove(item:any, i:number){
     const control=this.form.get('products') as FormArray;
+    if(this.editng){
+      var j:number=0;
+     for(let pro of this.orderedProductList){
+      console.log(i,"<=i j=>",j)
+      if(j===i){
+        this.Serves.deleteService("OrderLists/"+pro.id);
+      }
+      j=j+1;
+    }
+    }
+   
     control.removeAt(i);
   }
  
