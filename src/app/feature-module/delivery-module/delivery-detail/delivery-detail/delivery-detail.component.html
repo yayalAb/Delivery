@@ -9,7 +9,7 @@
                   <ejs-textbox class="form-control" placeholder="Rrdered By" floatLabelType="Always" formControlName="orderedBy" readonly></ejs-textbox>
                 </div>
                 <div class='textboxes'>
-                  <ejs-dropdownlist class="form-control" id='ddlelement' [dataSource]='driver'  formControlName="driver" [ngModel]="data?.driver" placeholder='Select a driver' ></ejs-dropdownlist>
+                  <ejs-dropdownlist class="form-control" id='ddlelement' [dataSource]='driver'  formControlName="driverId" [ngModel]="data?.driverId" placeholder='Select a driver' ></ejs-dropdownlist>
                  </div>  
                  <div class='textboxes'>
                   <ejs-textbox class="form-control" placeholder="Start" floatLabelType="Always" formControlName="start" [ngModel]="data?.start"></ejs-textbox>
@@ -21,7 +21,7 @@
               <div formGroupName="selector">
                   <div class="selectorClass"  *ngIf="productsList | async as prods">
                     <div class="optionClass">
-                        <ejs-dropdownlist id='ddlelement' class="form-control"  [dataSource]='productList' [fields]="localFields" formControlName="product_Id"  [placeholder]='LocalWaterMark' ></ejs-dropdownlist>
+                        <ejs-dropdownlist id='ddlelement' class="form-control"  [dataSource]='productList' [fields]="localFields" formControlName="productid"  [placeholder]='LocalWaterMark' ></ejs-dropdownlist>
                     </div>        
                     <div class="quantity">
                       <ejs-numerictextbox  class="form-control" 
@@ -47,7 +47,7 @@
                   <div *ngFor="let item of products; let i = index;">
                     <div class="orders_array" [formGroupName]="i">
                         <div class="arrayList">
-                          <p>{{item.value.product_Id}}</p> 
+                          <p>{{item.value.productid}}</p> 
                           <p  class="carrancy">{{item.value.Price| currency:'USD':true}} </p>
                           <ejs-numerictextbox  class="inputclass form-control"  step="10"  min="10"  max="1000" [value]="item.value.quantity" formControlName="quantity"></ejs-numerictextbox>
                           <button class="RemoveButton  btn-danger" type="button" (click)="onRemove(item, i)">  Remove   </button>

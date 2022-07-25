@@ -24,7 +24,7 @@ export class DriverComponent implements OnInit {
       this.driver=params.get('id')
     })
     if(this.driver){
-      this.data=this.Serves.getService('driver/'+this.driver).subscribe(response => {
+      this.data=this.Serves.getService('Drivers/'+this.driver).subscribe(response => {
         this.data = response;
     });
     }
@@ -52,11 +52,12 @@ export class DriverComponent implements OnInit {
   onSubmit(event:any) {
       this.submitted.emit(this.form);
       if(this.driver && this.form.valid){
-        this.Serves.putService('driver/'+this.driver,this.form.value)
+        this.Serves.putService('Drivers/'+this.driver,this.form.value)
         console.log("Updating")
       }else{
        for( let der of this.drivers){
-         this.Serves.postService('driver',der)
+        console.log("der :",der);
+         this.Serves.postService('Drivers',der)
        }
        alert("Drivers Added Successfully")
         console.log("Creating")

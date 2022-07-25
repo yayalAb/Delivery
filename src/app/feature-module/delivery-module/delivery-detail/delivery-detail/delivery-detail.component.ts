@@ -51,13 +51,16 @@ export class DeliveryDetailComponent implements OnInit {
     });
     this.Serves.getService('OrderLists').subscribe(response => {
       this.orderedProductList = response;  
-      this.orderedProductList=this.orderedProductList.filter((item:any)=>item.orderId==this.orderId);
+      console.log("this.orderedProductList: ",this.orderedProductList)
+      this.orderedProductList=this.orderedProductList.filter((item:any)=>item.orderid==this.orderId);
+
+      console.log("this.orderedProductList : ",this.orderedProductList)
       for(let ordLis of this.orderedProductList){
           const control=this.form.get('products') as FormArray;
-          this.form.get(['selector','product_Id'])?.setValue(ordLis.product_Id);
+          this.form.get(['selector','productid'])?.setValue(ordLis.productid);
           this.form.get(['selector','Price'])?.setValue(ordLis.price);
           this.form.get(['selector','quantity'])?.setValue(ordLis.quantity);
-          this.form.get(['selector','OrderId'])?.setValue(ordLis.orderId);
+          this.form.get(['selector','OrderId'])?.setValue(ordLis.orderid);
           control.push(this.createProduct(this.form.get('selector')?.value));
 
       }
@@ -88,14 +91,14 @@ public LocalWaterMark:string='Select Product';
   form = this.fb.group({
     orders:this.fb.group({
       orderedBy: [localStorage.getItem('token'), Validators.email],
-      driver:['', Validators.required],
+      driverId:['', Validators.required],
       start: ['', Validators.required],
       destination: ['', Validators.required],
       status: [false, Validators.required],
     }),
     selector:this.fb.group({
       OrderId:'',
-      product_Id:0,
+      productid:0,
       quantity:'10',
       Price:'',
     }),
@@ -105,7 +108,7 @@ public LocalWaterMark:string='Select Product';
   createProduct(products:any){
     return new FormGroup({
         OrderId:new FormControl(products.OrderId || ''),
-        product_Id:new FormControl(products.product_Id || 0),
+        productid:new FormControl(products.productid || 0),
         quantity:new FormControl(products.quantity || 0),
         Price:new FormControl(products.Price || 0)
     })
@@ -119,11 +122,11 @@ public LocalWaterMark:string='Select Product';
     const control=this.form.get('products') as FormArray;
     this.productsList.subscribe(response => {
       this.product1 = response;
-      const id=this.form.get(['selector','product_Id'])?.value;
+      const id=this.form.get(['selector','productid'])?.value;
       const cunt=this.form.get(['selector','quantity'])?.value; 
       this.Serves.getService("Product/" + id).subscribe(
           response => { this.obj = response;
-          this.form.get(['selector','product_Id'])?.setValue(id);
+          this.form.get(['selector','productid'])?.setValue(id);
           this.form.get(['selector','Price'])?.setValue(this.obj.unitPrice*cunt);
           this.form.get(['selector','OrderId'])?.setValue('4');
           control.push(this.createProduct(this.form.get('selector')?.value));
@@ -144,6 +147,7 @@ ReturnProduct(id:number):Observable<any>{
 }
  
  async onSubmit(event:any){
+  console.log("this.form.get('orders')?.value :",this.form.get('orders')?.value);
    await this.Serves.postService('Orders',this.form.get('orders')?.value);
     var id:number;
     this.Serves.getService('Orders').subscribe(

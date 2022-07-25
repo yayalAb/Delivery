@@ -21,19 +21,19 @@ export class ProductListComponent{
      {
       fieldName:"productionDate",
       Title:"production Date", 
-     // EditType:"datepickeredit" 
+      EditType:"datepickeredit" ,
+      formtstr:"date:\"MM/dd/yy\""
      }
      ,
      {
       fieldName:"expireDate",
       Title:"Expire Date", 
-      //EditType:"datepickeredit" 
+      EditType:"datepickeredit" 
      }
      ,
      {
       fieldName:"productQuality",
-      Title:"Quantity", 
-      EditType:"numericedit" 
+      Title:"Quality"
      },
      {
       fieldName:"content",

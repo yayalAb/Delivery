@@ -13,7 +13,8 @@ import { Observable } from 'rxjs';
 export interface Lists{
   fieldName:string,
   Title:string,
-  EditType?:string
+  EditType?:string,
+  formtstr?:string
 }
 
 
@@ -78,11 +79,13 @@ actionBegin(args:any) {
        }   
   if (args.requestType === 'add'){
      this.addbig=true;
-     console.log("Action begin Add");
-       }    
+     console.log("Action begin Add");   
+    }
+        
 }
 
 actionComplete(args: any) {
+ 
   if (args.requestType === 'save' ) {
       if(this.addbig){
         console.log(this.ListUrls, " Sent Data : ", args.data);
@@ -92,6 +95,8 @@ actionComplete(args: any) {
         alert(this.Title+" : Added Successfuly")
       }
       else if(this.editbig){
+        console.log(this.ListUrls+"/"+args.data.id);
+        console.log("args.data : ",args.data);
         this.productService.putService(this.ListUrls+"/"+args.data.id, args.data);
         this.editbig=false;
         alert(this.Title+" Updated Successfuly")
@@ -100,9 +105,11 @@ actionComplete(args: any) {
       }
   }
   if (args.requestType === 'delete'){
-          this.url=this.ListUrls+"/"+args.rowdata.id;
-            // console.log("row data : ", args.data);
+      for(let da of args.data){
+        console.log("delete begain da: ",da.id);
+         this.url=this.ListUrls+"/"+da.id;
           this.productService.deleteService(this.url);
+      }
         } 
 }
 

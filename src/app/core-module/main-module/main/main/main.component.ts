@@ -72,17 +72,17 @@ export class MainComponent implements OnInit {
             //  },
 
             {
-            nodeId: '04', nodeText:  'Vehicle', iconCss: 'icon-th icon', url:'/feature/vehicle/vehicle/list'
+            nodeId: '04', nodeText:  'Vehicle', iconCss: 'icon-microchip icon', url:'/feature/vehicle/vehicle/list'
             },
               
         ];
 
         this.authUser =[
             {
-                nodeId: '05', nodeText:  'Drivers', iconCss: '.e-font icon', url:'/feature/driver/driver/list'
+                nodeId: '05', nodeText:  'Drivers', iconCss: 'icon-microchip icon', url:'/feature/driver/driver/list'
             },
             {
-                nodeId: '06', nodeText:  'Order', iconCss: '.e-font icon', url:'/feature/delivery/delivery/list'
+                nodeId: '06', nodeText:  'Order', iconCss: 'icon-microchip icon', url:'/feature/delivery/delivery/list'
             } 
         ];
 
@@ -90,10 +90,10 @@ export class MainComponent implements OnInit {
 
         this.authUserCust =[
             {
-                nodeId: '07', nodeText:  'Drivers cust', iconCss: '.e-font icon', url:'/feature/driver/driver/list'
+                nodeId: '07', nodeText:  'Drivers cust', iconCss: 'icon-microchip icon', url:'/feature/driver/driver/list'
             },
             {
-                nodeId: '08', nodeText:  'Order Cast', iconCss: '.e-font icon', url:'/feature/delivery/delivery/list'
+                nodeId: '08', nodeText:  'Order Cast', iconCss: 'icon-microchip icon', url:'/feature/delivery/delivery/list'
             } 
         ];
             // if(this.rout.isLoggedIn()){

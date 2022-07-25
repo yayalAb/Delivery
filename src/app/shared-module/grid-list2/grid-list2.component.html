@@ -17,8 +17,8 @@
                 <e-column field='viewdetail' headerText='Action' textAlign='Right' width=20%> 
                     <ng-template #template let-data>
                         <div>
-                            <button (click)="delete(data.id)">Delete</button>
-                            <button (click)="detail(data.id)">Detail</button>
+                            <button class="btn-danger" (click)="delete(data.id)">Delete</button>
+                            <button class="btn-info"  (click)="detail(data.id)">Detail</button>
                         </div>
                     </ng-template>
                 </e-column>
