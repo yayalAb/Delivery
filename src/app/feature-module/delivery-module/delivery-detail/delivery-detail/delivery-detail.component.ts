@@ -21,11 +21,14 @@ export class DeliveryDetailComponent implements OnInit {
   data!:any;
   
   productList:lists[]=[];
+  driverList:lists[]=[];
+  driver!:any;
   ordersList!:any;
   sngproduct:lists={
     code:1,
      name:""
   };
+
   obj:any;
   editng:boolean=false;
   sinpro  :Product[]=[];
@@ -38,7 +41,6 @@ export class DeliveryDetailComponent implements OnInit {
     private router1:ActivatedRoute
   ) { }
 
-  public driver= ['driver1', 'driver2', 'driver3', 'driver4', 'driver5'];
   orderId:any="";
   ngOnInit(): void { 
    
@@ -82,6 +84,20 @@ export class DeliveryDetailComponent implements OnInit {
           this.productList.push(this.sngproduct);
       }
      });
+     this.Serves.getService('Drivers').subscribe(response => {
+      this.driver = response;
+      for(let lis of this.driver){
+        this.sngproduct=
+          {
+            code:lis.id,
+            name:lis.name
+          }
+          this.driverList.push(this.sngproduct);
+      }
+     });
+
+
+     
 
 
     // this.form.get('products')?.valueChanges.subscribe(value => {
@@ -149,7 +165,6 @@ public LocalWaterMark:string='Select Product';
       j=j+1;
     }
     }
-   
     control.removeAt(i);
   }
  

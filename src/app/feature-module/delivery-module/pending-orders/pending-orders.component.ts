@@ -17,7 +17,7 @@ list=[{
   text:'Ordered By'
 },
 {
-  name:'driverId',
+  name:'driver.name',
   text:'Driver'
 },
 {

@@ -9,7 +9,7 @@
                   <ejs-textbox class="form-control" placeholder="Rrdered By" floatLabelType="Always" formControlName="orderedBy" readonly></ejs-textbox>
                 </div>
                 <div class='textboxes'>
-                  <ejs-dropdownlist class="form-control" id='ddlelement' [dataSource]='driver'  formControlName="driverId" [ngModel]="data?.driverId" placeholder='Select a driver' ></ejs-dropdownlist>
+                  <ejs-dropdownlist class="form-control" id='ddlelement' [dataSource]='driverList' [fields]="localFields"  formControlName="driverId" [ngModel]="data?.driverId" placeholder='Select a driver' ></ejs-dropdownlist>
                  </div>  
                  <div class='textboxes'>
                   <ejs-textbox class="form-control" placeholder="Start" floatLabelType="Always" formControlName="start" [ngModel]="data?.start"></ejs-textbox>
